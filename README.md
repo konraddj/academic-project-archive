@@ -17,15 +17,15 @@ This repository gathers selected academic and internship projects completed duri
 
 Each folder below contains detailed documentation and configurations related to a project.
 
-| # | Project Title | Summary |
-|---|---------------|---------|
-| 1 | **VMware vSAN Cluster and Domain Controller Configuration** | SOP for deploying a VMware vSAN cluster with Active Directory. Includes setup and validation. |
-| 2 | **Hyper-V Cluster on Windows Server** | Hyper-V cluster with shared storage and domain controller on Windows Server 2016. |
-| 3 | **Enterprise Network Design (LAN/WAN)** | LAN and WAN design for an enterprise, with FortiGate firewall and GNS3 simulation. |
-| 4 | **Secure Office Network for Financial Institution** | WAN-integrated LAN design for secure expansion of a financial company. |
-| 5 | **DHCP Log Reporting Tool (Python)** | Python script for processing DHCP logs from Ubuntu servers and generating reports. |
-| 6 | **PowerShell Automation Scripts** | Walkthroughs and scripts for system automation using PowerShell. |
-| 7 | **Python Scripting Projects** | Various Python scripts and automation tools for learning and demonstration. |
+| # | Project | Description |
+|---|---------|-------------|
+| 1 | [`VMware vSAN Cluster and Domain Controller Configuration`](./VMware-vSAN-Cluster-and-Domain-Controller-Configuration) | SOP for deploying a VMware vSAN cluster with Domain Controller. Includes configuration and validation steps. |
+| 2 | [`Hyper-V Cluster and Domain Controller Setup on Windows Server`](./Hyper-V-Cluster-and-Domain-Controller-Configuration) | Hyper-V cluster with shared storage and Domain Controller on Windows Server 2016. Step-by-step setup and management. |
+| 3 | [`Enterprise Network Design with LAN and WAN Integration`](./Enterprise-Network-Design) | Full enterprise LAN/WAN design including FortiGate config, GNS3 simulation, and cost estimation. |
+| 4 | [`Secure Office Network with WAN Integration for a Financial Company`](./Secure-LAN-with-WAN-Integration) | Secure network architecture for financial company’s office expansion, with WAN integration. |
+| 5 | [`DHCP Log Processing and Reporting Tool (Python)`](./DHCP-Log-Automation-and-Reporting-Tool) | Python tool for parsing and reporting DHCP logs from Ubuntu-based production servers. |
+| 6 | [`PowerShell Automation and Scripting Examples`](./PowerShell) | Scripts and walkthroughs in PowerShell. |
+| 7 | [`Python Walkthroughs and Automation Scripts`](./Python) | General Python scripting and examples. |
 
 ---
 

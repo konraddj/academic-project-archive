@@ -20,7 +20,7 @@ Each folder below contains detailed documentation and configurations related to 
 | # | Project | Description |
 |---|---------|-------------|
 | 1 | [`VMware vSAN Cluster and Domain Controller Configuration`](./VMware-vSAN-Cluster-and-Domain-Controller-Configuration) | SOP for deploying a VMware vSAN cluster with Domain Controller. Includes configuration and validation steps. |
-| 2 | [`Hyper-V Cluster and Domain Controller Setup on Windows Server`](./Hyper-V-Cluster-and-Domain-Controller-Configuration) | Hyper-V cluster with shared storage and Domain Controller on Windows Server 2016. Step-by-step setup and management. |
+| 2 | [`Hyper-V Cluster and Domain Controller Setup on Windows Server`](./Cluster-and-Domain-Controller-Configuration-for-Hyper-V-Environments) | Hyper-V cluster with shared storage and Domain Controller on Windows Server 2016. Step-by-step setup and management. |
 | 3 | [`Enterprise Network Design with LAN and WAN Integration`](./Enterprise-Network-Design) | Full enterprise LAN/WAN design including FortiGate config, GNS3 simulation, and cost estimation. |
 | 4 | [`Secure Office Network with WAN Integration for a Financial Company`](./Secure-LAN-with-WAN-Integration) | Secure network architecture for financial company’s office expansion, with WAN integration. |
 | 5 | [`DHCP Log Processing and Reporting Tool (Python)`](./DHCP-Log-Automation-and-Reporting-Tool) | Python tool for parsing and reporting DHCP logs from Ubuntu-based production servers. |

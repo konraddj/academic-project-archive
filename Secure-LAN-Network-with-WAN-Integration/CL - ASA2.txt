@@ -1,0 +1,28 @@
+hostname ASA2
+int gi1/2
+no ip address
+no nameif
+no security-level
+exit
+int gi1/1
+no nameif
+no security-level
+no ip address dhcp
+exit
+int gi1/1
+ip address 30.0.0.2 255.255.255.248
+nameif inside
+security-level 0
+no shut
+exit
+int gi1/2
+ip address 31.0.0.2 255.255.255.248
+nameif outside
+security-level 0
+no shut
+exit
+
+Router rip
+Network 30.0.0.0
+Network 31.0.0.0
+exit

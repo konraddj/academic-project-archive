@@ -1,0 +1,70 @@
+int g0/0.10
+encapsulation dot1Q 10
+ip address 192.168.0.30 255.255.255.224
+exit
+int g0/0.20
+encapsulation dot1Q 20
+ip address 192.168.0.46 255.255.255.240
+exit
+int g0/0.30
+encapsulation dot1Q 30
+ip address 192.168.0.62 255.255.255.240
+exit
+int g0/0.40
+encapsulation dot1Q 40
+ip address 192.168.0.78 255.255.255.240
+exit
+int g0/0.50
+encapsulation dot1Q 50
+ip address 192.168.0.94 255.255.255.240
+exit
+int g0/0
+no shut
+
+int gi0/1
+ip address 10.0.0.1 255.255.255.248
+no shut
+
+Router rip
+Network 192.168.0.0
+Network 192.168.0.32
+Network 192.168.0.48
+Network 192.168.0.64
+Network 192.168.0.80
+Network 10.0.0.0
+
+ip access-list extended Block_Emp-Fin
+deny ip 192.168.0.0 0.0.0.31 any
+permit ip any any
+exit
+int g0/0.30
+ip access-group Block_Emp-Fin OUT
+
+ip access-list extended ftp10
+deny tcp 192.168.0.0 0.0.0.31 host 192.168.80.2 eq ftp
+permit ip any any
+exit
+int g0/0.10
+ip access-group ftp10 IN
+exit
+
+ip access-list extended ftp50
+deny tcp 192.168.0.80 0.0.0.15 host 192.168.80.2 eq ftp
+permit ip any any
+exit
+int g0/0.50
+ip access-group ftp50 IN
+exit
+
+line vty 0 4
+password MyTelnet
+login
+exit
+ip access-list extended AdminTelnet
+10 permit tcp host 192.168.0.68 any eq telnet
+line vty 0 4
+access-class AdminTelnet in
+exit
+
+access-list 101 remark Restrict access to valid services only
+exit

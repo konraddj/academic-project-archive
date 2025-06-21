@@ -17,39 +17,14 @@ This repository gathers selected academic and internship projects completed duri
 
 Each folder below contains detailed documentation and configurations related to a project.
 
-
-### 🔧 Projects Overview
-
-#### [`VMware vSAN Cluster and Domain Controller Configuration`](./VMware-vSAN-Cluster-and-Domain-Controller-Configuration)  
-SOP for deploying a VMware vSAN cluster with Domain Controller. Includes configuration and validation steps.
-
-#### [`Hyper-V Cluster and Domain Controller Setup on Windows Server`](./Hyper-V-Cluster-and-Domain-Controller-Configuration)  
-Hyper-V cluster with shared storage and Domain Controller on Windows Server 2016. Step-by-step setup and management.
-
-#### [`Enterprise Network Design with LAN and WAN Integration`](./Enterprise-Network-Design)  
-Full enterprise LAN/WAN design including FortiGate config, GNS3 simulation, and cost estimation.
-
-#### [`Secure Office Network with WAN Integration for a Financial Company`](./Secure-LAN-with-WAN-Integration)  
-Secure network architecture for financial company’s office expansion, with WAN integration.
-
-#### [`DHCP Log Processing and Reporting Tool (Python)`](./DHCP-Log-Automation-and-Reporting-Tool)  
-Python tool for parsing and reporting DHCP logs from Ubuntu-based production servers.
-
-#### [`PowerShell Automation and Scripting Examples`](./PowerShell)  
-Scripts and walkthroughs in PowerShell.
-
-#### [`Python Walkthroughs and Automation Scripts`](./Python)  
-General Python automation scripting and learning examples.
-
-
-
-| Project | Description |
-|---------|-------------|
-| [`VMware vSAN Cluster and Domain Controller Configuration`](./VMware-vSAN-Cluster-and-Domain-Controller-Configuration) | SOP for deploying a VMware vSAN cluster with Domain Controller. Includes configuration and validation steps. |
-| [`Hyper-V Cluster and Domain Controller Setup on Windows Server`](./Hyper-V-Cluster-and-Domain-Controller-Configuration) | Hyper-V cluster with shared storage and Domain Controller on Windows Server 2016. Step-by-step setup and management. |
-| [`Enterprise Network Design with LAN and WAN Integration`](./Enterprise-Network-Design) | Full enterprise LAN/WAN design including FortiGate config, GNS3 simulation, and cost estimation. |
-| [`Secure Office Network with WAN Integration for a Financial Company`](./Secure-LAN-with-WAN-Integration) | Secure network architecture for financial company’s office expansion, with WAN integration. |
-| [`DHCP Log Processing and Reporting Tool (Python)`](./DHCP-Log-Automation-and-Reporting-Tool) | Python tool for parsing and reporting DHCP logs from Ubuntu-based production servers. |
+| # | Project | Description |
+|---|---------|-------------|
+| 1 | [`VMware vSAN Cluster and Domain Controller Configuration`](./VMware-vSAN-Cluster-and-Domain-Controller-Configuration) | SOP for deploying a VMware vSAN cluster with Domain Controller. Includes configuration and validation steps. |
+| 2 | [`Hyper-V Cluster and Domain Controller Setup on Windows Server`](./Hyper-V-Cluster-and-Domain-Controller-Configuration) | Hyper-V cluster with shared storage and Domain Controller on Windows Server 2016. Step-by-step setup and management. |
+| 3 | [`Enterprise Network Design with LAN and WAN Integration`](./Enterprise-Network-Design) | Full enterprise LAN/WAN design including FortiGate config, GNS3 simulation, and cost estimation. |
+| 4 | [`Secure Office Network with WAN Integration for a Financial Company`](./Secure-LAN-with-WAN-Integration) | Secure network architecture for financial company’s office expansion, with WAN integration. |
+| 5 | [`DHCP Log Processing and Reporting Tool (Python)`](./DHCP-Log-Automation-and-Reporting-Tool) | Python tool for parsing and reporting DHCP logs from Ubuntu-based production servers. |
+| 6 | [`PowerShell Automation and Scripting Examples`](./PowerShell) | Scripts and walkthroughs in PowerShell. |
 
 ---
 

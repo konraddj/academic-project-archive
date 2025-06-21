@@ -2,6 +2,9 @@
 
 Featuring academic projects centered on networking, cybersecurity, and cloud technologies, offering practical solutions and insights for education.
 
+<p align="center">
+  <img src="A_header_graphic_for_an_academic_project_archive.png" alt="Academic Project Archive Banner" width="80%">
+</p>
 
 ## 📚 Contents
 

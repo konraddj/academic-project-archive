@@ -35,7 +35,7 @@ Each folder below contains detailed documentation and configurations related to 
 
 - **Master’s Thesis:Securing Communication in the Cloud Computing Using Cryptographic Techniques** held in a private repository, available upon request.
 - **Brute Force Attacks: Cryptanalysis and Prevention Techniques** – a final-year BSc research project focusing on password security mechanisms, brute-force attack strategies, and practical defense implementations. Available upon direct inquiry.
-- **IEEE Research Draft (Internship): Verification of Certificate Authorities (CAs) and integration with cloud providers for enhanced security ** accepted but unpublished. Contact for details.
+- **IEEE Research Draft (Internship): Verification of Certificate Authorities (CAs) and integration with cloud providers for enhanced security** accepted but unpublished. Contact for details.
 
 ---
 

@@ -1,0 +1,20 @@
+hostname Server-Maynooth
+int gi0/0
+ip address 10.34.0.201 255.255.0.0
+no shut
+exit
+ip domain-name maynooth.ads.electric-petrol.ie
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+ip http server
+ip http secure-server
+ip ftp username maynooth
+ip ftp password Passw0rd
+line vty 0 4
+transport input ssh
+login local
+exit
+username admin password Passw0rd
+ip route 0.0.0.0 0.0.0.0 10.34.0.1
+router ospf 1
+network 10.34.0.0 0.0.255.255 area 0

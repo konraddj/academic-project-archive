@@ -1,0 +1,1452 @@
+#config-version=FGVMK6-6.4.5-FW-build1828-210217:opmode=0:vdom=0:user=admin
+-#conf_file_ver=274585849231795
++#conf_file_ver=284288180355716
+ #buildno=1828
+ #global_vdom=1
+ config system global
+     set alias "FortiGate-VM64-KVM"
+-    set hostname "FortiGate-VM64-KVM"
++    set hostname "MaynoothSite"
+     set timezone 04
+ end
+ config system accprofile
+... skipped 17 lines ...
+         set mode dhcp
+         set allowaccess ping https ssh http
+         set type physical
+-        set alias "Outside"
++        set alias "WAN1"
+         set lldp-reception enable
+         set role wan
+         set snmp-index 1
+     next
+     edit "port2"
+         set vdom "root"
++        set ip 10.34.0.1 255.255.0.0
++        set allowaccess ping https ssh snmp
+         set type physical
++        set alias "Inside"
++        set device-identification enable
++        set lldp-transmission enable
++        set role lan
+         set snmp-index 2
+     next
+     edit "port3"
+         set vdom "root"
++        set mode dhcp
++        set allowaccess ping https ssh http
+         set type physical
++        set alias "WAN2"
++        set role wan
+         set snmp-index 3
+     next
+     edit "port4"
+... skipped 47 lines ...
+         set lldp-transmission enable
+         set snmp-index 12
+     next
++    edit "Site-DC2"
++        set vdom "root"
++        set type tunnel
++        set snmp-index 13
++        set interface "port1"
++    next
++    edit "Site-DC1"
++        set vdom "root"
++        set type tunnel
++        set snmp-index 14
++        set interface "port1"
++    next
+ end
+ config system custom-language
+     edit "en"
+... skipped 305 lines ...
+                     next
+                 end
+             next
++            edit 11
++                set name "Routing Monitor"
++                set vdom "root"
++                set layout-type standalone
++                set csf disable
++                config widget
++                    edit 1
++                        set type routing
++                        set width 1
++                        set height 1
++                        set fortigate "FGVMEVNX5DNVMO1F"
++                        set router-view-type "staticdynamic"
++                    next
++                end
++            next
++            edit 12
++                set name "IPsec Monitor"
++                set vdom "root"
++                set layout-type standalone
++                set csf disable
++                config widget
++                    edit 1
++                        set type ipsec-vpn
++                        set width 1
++                        set height 1
++                        set fortigate "FGVMEVNX5DNVMO1F"
++                    next
++                end
++            next
+         end
+-        set password ENC SH2kUF918wN0XszHofVX1fjpCsVCHEIZZNdRJeA9w5zdMqn8IJwsWZs/KDo/Lc=
++        set password ENC SH2p8/tfaiUxRtcj97sbQk1EYT6J0Z+D2Nigxbf6NiSpYA5gwFQuwx2CRqnlxk=
+     next
+ end
+ config system sso-admin
+... skipped 6458 lines ...
+         set vci-match enable
+         set vci-string "FortiSwitch" "FortiExtender"
+     next
++    edit 2
++        set dns-service default
++        set default-gateway 10.34.0.1
++        set netmask 255.255.0.0
++        set interface "port2"
++        config ip-range
++            edit 1
++                set start-ip 10.34.0.2
++                set end-ip 10.34.0.200
++            next
++        end
++    next
+ end
+ config firewall address
+     edit "none"
+-        set uuid a7b140d4-df04-51ed-29d3-8c7b153b33fc
++        set uuid 1f9eb806-dbd1-51ed-a3ea-855e66b6a991
+         set subnet 0.0.0.0 255.255.255.255
+     next
+     edit "login.microsoftonline.com"
+-        set uuid a7b144d0-df04-51ed-3149-aa66aa6db1e4
++        set uuid 1f9ebcd4-dbd1-51ed-f8bb-fdbd7e851842
+         set type fqdn
+         set fqdn "login.microsoftonline.com"
+     next
+     edit "login.microsoft.com"
+-        set uuid a7b14750-df04-51ed-e2ee-fab8ba2f4895
++        set uuid 1f9ec026-dbd1-51ed-987d-7427956aee33
+         set type fqdn
+         set fqdn "login.microsoft.com"
+     next
+     edit "login.windows.net"
+-        set uuid a7b1494e-df04-51ed-3bdb-ed71ca0a4d97
++        set uuid 1f9ec242-dbd1-51ed-421b-b1eb329d4701
+         set type fqdn
+         set fqdn "login.windows.net"
+     next
+     edit "gmail.com"
+-        set uuid a7b14c78-df04-51ed-410c-f5a8cb9b6a58
++        set uuid 1f9ec440-dbd1-51ed-c9d4-56fd40b3dcf0
+         set type fqdn
+         set fqdn "gmail.com"
+     next
+     edit "wildcard.google.com"
+-        set uuid a7b152b8-df04-51ed-fa59-9400395a879d
++        set uuid 1f9ec62a-dbd1-51ed-dcb1-3d273431e078
+         set type fqdn
+         set fqdn "*.google.com"
+     next
+     edit "wildcard.dropbox.com"
+-        set uuid a7b154fc-df04-51ed-8518-70f8c0996e32
++        set uuid 1f9ec814-dbd1-51ed-a07d-e9f6640b3b50
+         set type fqdn
+         set fqdn "*.dropbox.com"
+     next
+     edit "all"
+-        set uuid a7b384e8-df04-51ed-211d-1a4de7520f0b
++        set uuid 1fa4901e-dbd1-51ed-fef6-9f9a15698bc8
+     next
+     edit "FIREWALL_AUTH_PORTAL_ADDRESS"
+-        set uuid a7b385e2-df04-51ed-5310-2ae5ea3b3ba2
++        set uuid 1fa4912c-dbd1-51ed-d7e5-903bdf0460be
+     next
+     edit "FABRIC_DEVICE"
+-        set uuid a7b386aa-df04-51ed-c07c-a151b93313d6
++        set uuid 1fa491fe-dbd1-51ed-82dd-b4700c8dfcd3
+         set comment "IPv4 addresses of Fabric Devices."
+     next
+     edit "SSLVPN_TUNNEL_ADDR1"
+-        set uuid a7b3d5f6-df04-51ed-ec26-951bb42adee4
++        set uuid 1fa661d2-dbd1-51ed-5404-f7f8b166a634
+         set type iprange
+         set associated-interface "ssl.root"
+         set start-ip 10.212.134.200
+         set end-ip 10.212.134.210
+     next
++    edit "InsideLan"
++        set uuid 0980f750-dbef-51ed-ba9d-b979dc559e4c
++        set associated-interface "port2"
++        set subnet 10.34.0.0 255.255.0.0
++    next
++    edit "Site-DC2_local_subnet_1"
++        set uuid d4166b22-dc5c-51ed-d9f8-fac9ff6a581f
++        set allow-routing enable
++        set subnet 10.34.0.0 255.255.0.0
++    next
++    edit "Site-DC2_remote_subnet_1"
++        set uuid d4180bee-dc5c-51ed-697a-17eacf8abb06
++        set allow-routing enable
++        set subnet 10.3.0.0 255.255.0.0
++    next
++    edit "Site-DC1_local_subnet_1"
++        set uuid b3f263d4-dc78-51ed-b110-595a0fa39420
++        set allow-routing enable
++        set subnet 10.34.0.0 255.255.0.0
++    next
++    edit "Site-DC1_remote_subnet_1"
++        set uuid b3f4474e-dc78-51ed-efac-32abb49b40ba
++        set allow-routing enable
++        set subnet 10.2.0.0 255.255.0.0
++    next
+ end
+ config firewall multicast-address
+     edit "all"
+... skipped 23 lines ...
+ end
+ config firewall address6
+     edit "SSLVPN_TUNNEL_IPv6_ADDR1"
+-        set uuid a7b3d772-df04-51ed-5d51-d92110e3e88f
++        set uuid 1fa66380-dbd1-51ed-f548-04297a5a90d7
+         set ip6 fdff:ffff::/120
+     next
+     edit "all"
+-        set uuid a7b16276-df04-51ed-141b-52781d1064d3
++        set uuid 1f9f4064-dbd1-51ed-1193-bf44ea17c1c4
+     next
+     edit "none"
+-        set uuid a7b1647e-df04-51ed-9386-0627b912576a
++        set uuid 1f9f4334-dbd1-51ed-6b1d-50073eace3d2
+ config firewall multicast-address6
+     edit "all"
+         set ip6 ff00::/8
+     next
+-        set uuid a7b157ae-df04-51ed-4889-16584df75ae2
++        set uuid 1f9ecad0-dbd1-51ed-3d46-ac5e7adf3924
+         set member "gmail.com" "wildcard.google.com"
+     next
+     edit "Microsoft Office 365"
+-        set uuid a7b15c90-df04-51ed-f251-e69d54c39b11
++        set uuid 1f9ed00c-dbd1-51ed-71f2-e7a193af2031
+         set member "login.microsoftonline.com" "login.microsoft.com" "login.windows.net"
+     next
++    edit "Site-DC2_local"
++        set uuid d41758a2-dc5c-51ed-efbf-cfcd1ea7120e
++        set member "Site-DC2_local_subnet_1"
++        set comment "VPN: Site-DC2 (Created by VPN wizard)"
++        set allow-routing enable
++    next
++    edit "Site-DC2_remote"
++        set uuid d4190102-dc5c-51ed-d98c-8905e2463962
++        set member "Site-DC2_remote_subnet_1"
++        set comment "VPN: Site-DC2 (Created by VPN wizard)"
++        set allow-routing enable
++    next
++    edit "Site-DC1_local"
++        set uuid b3f37300-dc78-51ed-4e65-6541c88d49e4
++        set member "Site-DC1_local_subnet_1"
++        set comment "VPN: Site-DC1 (Created by VPN wizard)"
++        set allow-routing enable
++    next
++    edit "Site-DC1_remote"
++        set uuid b3f53122-dc78-51ed-5143-dfa8b2d7f01d
++        set member "Site-DC1_remote_subnet_1"
++        set comment "VPN: Site-DC1 (Created by VPN wizard)"
++        set allow-routing enable
++    next
+ end
+ config firewall wildcard-fqdn custom
+     edit "adobe"
+-        set uuid a7e99a6a-df04-51ed-5762-45439f26bd9d
++        set uuid 2030351a-dbd1-51ed-e231-61a6e5fce58f
+         set wildcard-fqdn "*.adobe.com"
+     next
+     edit "Adobe Login"
+-        set uuid a7e99b28-df04-51ed-5c57-fd2e31de11b0
++        set uuid 203035c4-dbd1-51ed-68fb-bfbc4b087bf0
+         set wildcard-fqdn "*.adobelogin.com"
+     next
+     edit "android"
+-        set uuid a7e99bc8-df04-51ed-1349-80d5e97a95c3
++        set uuid 2030365a-dbd1-51ed-ba3e-c15954228d7a
+         set wildcard-fqdn "*.android.com"
+     next
+     edit "apple"
+-        set uuid a7e99c68-df04-51ed-d379-354ccf1b1a5d
++        set uuid 20303704-dbd1-51ed-40d4-e0de3bde3c01
+         set wildcard-fqdn "*.apple.com"
+     next
+     edit "appstore"
+-        set uuid a7e99cfe-df04-51ed-d686-bf604a1a22c6
++        set uuid 20303790-dbd1-51ed-ebb9-1522ce009848
+         set wildcard-fqdn "*.appstore.com"
+     next
+     edit "auth.gfx.ms"
+-        set uuid a7e99d9e-df04-51ed-d485-0aa5bc5baebd
++        set uuid 20303826-dbd1-51ed-11a3-7e0bc23a783d
+         set wildcard-fqdn "*.auth.gfx.ms"
+     next
+     edit "citrix"
+-        set uuid a7e99e48-df04-51ed-d30b-f00b41a0a0de
++        set uuid 203038bc-dbd1-51ed-090e-20efa079c771
+         set wildcard-fqdn "*.citrixonline.com"
+     next
+     edit "dropbox.com"
+-        set uuid a7e99ee8-df04-51ed-e004-4efb103b37b4
++        set uuid 20303952-dbd1-51ed-092a-2955fffe6787
+         set wildcard-fqdn "*.dropbox.com"
+     next
+     edit "eease"
+-        set uuid a7e99f88-df04-51ed-a26c-d169bd7e7186
++        set uuid 203039e8-dbd1-51ed-1c0c-8dfc6f2bd080
+         set wildcard-fqdn "*.eease.com"
+     next
+     edit "firefox update server"
+-        set uuid a7e9a028-df04-51ed-831b-2075692bcc29
++        set uuid 20303a88-dbd1-51ed-832d-9149835fd087
+         set wildcard-fqdn "aus*.mozilla.org"
+     next
+     edit "fortinet"
+-        set uuid a7e9a0c8-df04-51ed-04c8-877a87a230eb
++        set uuid 20303b28-dbd1-51ed-e7ac-810fbc5460c6
+         set wildcard-fqdn "*.fortinet.com"
+     next
+     edit "googleapis.com"
+-        set uuid a7e9a168-df04-51ed-1af7-799333960fbe
++        set uuid 20303bbe-dbd1-51ed-efe3-851fc4aa92c2
+         set wildcard-fqdn "*.googleapis.com"
+     next
+     edit "google-drive"
+-        set uuid a7e9a212-df04-51ed-1896-ff67f9a5f017
++        set uuid 20303c5e-dbd1-51ed-2ba4-9160a272a940
+         set wildcard-fqdn "*drive.google.com"
+     next
+     edit "google-play2"
+-        set uuid a7e9a2b2-df04-51ed-4774-28f7a5d1aa6f
++        set uuid 20303cf4-dbd1-51ed-371b-74c4e65e85da
+         set wildcard-fqdn "*.ggpht.com"
+     next
+     edit "google-play3"
+-        set uuid a7e9a35c-df04-51ed-560b-c8a933080bcf
++        set uuid 20303d94-dbd1-51ed-1c78-a590c7d27aa4
+         set wildcard-fqdn "*.books.google.com"
+     next
+     edit "Gotomeeting"
+-        set uuid a7e9a3fc-df04-51ed-61f8-aedadbc624af
++        set uuid 20303e34-dbd1-51ed-a6d0-5f79fe996ed0
+         set wildcard-fqdn "*.gotomeeting.com"
+     next
+     edit "icloud"
+-        set uuid a7e9a500-df04-51ed-f830-11393f9f5382
++        set uuid 20303f2e-dbd1-51ed-21a5-bc8eb7415358
+         set wildcard-fqdn "*.icloud.com"
+     next
+     edit "itunes"
+-        set uuid a7e9a5aa-df04-51ed-b1f1-ca492e3d5316
++        set uuid 20303fce-dbd1-51ed-529a-c617d46d8c87
+         set wildcard-fqdn "*itunes.apple.com"
+     next
+     edit "microsoft"
+-        set uuid a7e9a64a-df04-51ed-5c2c-5a6499b5a589
++        set uuid 20304064-dbd1-51ed-bf96-5c208f1611b8
+         set wildcard-fqdn "*.microsoft.com"
+     next
+     edit "skype"
+-        set uuid a7e9a6ea-df04-51ed-4b51-9721c05d33f7
++        set uuid 20304104-dbd1-51ed-50bf-f45e876a5f45
+         set wildcard-fqdn "*.messenger.live.com"
+     next
+     edit "softwareupdate.vmware.com"
+-        set uuid a7e9a794-df04-51ed-5ff5-74b168f162bd
++        set uuid 2030419a-dbd1-51ed-8cb6-32c898ac4d55
+         set wildcard-fqdn "*.softwareupdate.vmware.com"
+     next
+     edit "verisign"
+-        set uuid a7e9a834-df04-51ed-6e20-1690cd6dcec2
++        set uuid 2030423a-dbd1-51ed-0369-488baa016611
+         set wildcard-fqdn "*.verisign.com"
+     next
+     edit "Windows update 2"
+-        set uuid a7e9a8d4-df04-51ed-f2af-0c6cc535d2f0
++        set uuid 203042da-dbd1-51ed-9b62-20f6099522e4
+         set wildcard-fqdn "*.windowsupdate.com"
+     next
+     edit "live.com"
+-        set uuid a7e9a988-df04-51ed-43db-60e9ec05dc94
++        set uuid 2030437a-dbd1-51ed-6c14-8faa28788738
+         set wildcard-fqdn "*.live.com"
+     next
+     edit "google-play"
+-        set uuid a7e9aa28-df04-51ed-4138-c0a78aab4c67
++        set uuid 20304410-dbd1-51ed-6dde-cbc4a7130bcf
+         set wildcard-fqdn "*play.google.com"
+     next
+     edit "update.microsoft.com"
+-        set uuid a7e9aac8-df04-51ed-f226-f284677b7060
++        set uuid 203044b0-dbd1-51ed-d0a2-7a0e0fae9d43
+         set wildcard-fqdn "*update.microsoft.com"
+     next
+     edit "swscan.apple.com"
+-        set uuid a7e9ab72-df04-51ed-30ae-d1cb35ab2258
++        set uuid 20304546-dbd1-51ed-d116-881b82d3071b
+         set wildcard-fqdn "*swscan.apple.com"
+     next
+     edit "autoupdate.opera.com"
+-        set uuid a7e9ac1c-df04-51ed-69d0-fa6e9a243238
++        set uuid 203045f0-dbd1-51ed-4285-49c40736c2fa
+         set wildcard-fqdn "*autoupdate.opera.com"
+     next
+ end
+... skipped 432 lines ...
+ end
+ config vpn certificate local
+     edit "Fortinet_CA_SSL"
+-        set password ENC iT0PDARIezpYy+Vlt8Yga5OPmjnNf7uSvqi0JrT9jELAz+BUaP8DPQltLcygrJHYncpVsHIPrt0JYsp8xQZvZx+QV6TLYGxALzfGBvxRJQLCf5o4Z1WYzGO9tYT6NKwTGhrizR5O90X8atSe89X9DRKQIX/gGvpmqNKuM2tPGb/tXP06hhoj3h5vZGFSLPFEFCPvMA==
++        set password ENC Ps65cSF6+P8JHEABvxZEaUvV30GEdajbwUDOBjVy0enmQHQkxveqtEGVACVPR2yfa7EAyFC+tYvdAJFbJU+rx2TWuA/aJhpkVrQ+RX8iSHQUewCDh5EtG125MQs8jQsQZ8hkFfezFfzQWd8teYdWpwhNUsL7LxR11FC9oxFMXGnaVeCNR9SYDDHK5VoLD7vN5eTTSA==
+         set comments "This is the default CA certificate the SSL Inspection will use when generating new server certificates."
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIREok/QdPV0gCAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECBOW2YGxHTX0BIIBYOLEUkk6/6Be
+-+V80vGfjVVw2budbU7zgZKAeQRMhAlC4gJH1TYhA7iv0WCZTJYImqqkldxKQba3f
+-nGp9kiwku987Y0IxYSuJxLdfz29ALO05u9fMGfkvNYyr+Byrt2q2do4JErTkcp8u
+-eYStd+MTV/SK/+nzke8eESoPWb0yQUQdTuEBzLLv+6Wbt+X7IYo7mLV6hKyVyB5U
+-i5u1pIBZJeTeBqcDWWYfAsqr4HlXblCXGpfi+AMfkECig5lN4VmxSv3pGfcq2PpY
+-LtGL+n3pqn/a2EC2pm32YmFeHfFpPqN/98azzpjpiibZI8kVHvGzrmHD8gOVEsaz
+-60IX8Sp0mu9Ch8dM7KdnyaswjK+GhU1qjGppxGmzmFCxCJCVYUiT2YoXbFIpR3v/
+-qoynX5fwKwcs4DUCyOeF+i3MmS8CwYsCpiNHt7Ib2+DAUCeJ/xyqqkp7fG6vz9LL
+-M/2NQJFktFw=
++MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIMLWs1jW3bcoCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECAhnTIJ7KSGTBIIBYLfzxVQp7A11
++eh6SJWxDFurOMCaCcVnEQbd97AFxfx7vPNarexLhM0yPOtkPhFxt+tiDIaUI0Xi5
++WJzUNqUKTwcMRdGY9TmJqwMw1R8WuS4Ln66j0UMyRnb0K+AI7vvPHhYl6gu34dW4
++mR2+92rekygqkkI8KgdDqv5qxSX9QAWtY2X+rsfcHvUdDIaf5mqhL1w2O1LgWbPJ
++kEVxNseile4a3mSKTn+gc68VzV7CquRfNbxdrKB6Ohfsl+AQ+pgcmuW26s5onl7F
++vylLQcCD49oSZyikX1nRPDuzuL6HokyNZVMXyH3Cu1w8qj0lESejhn56Vxv0N06T
++SFU1I1A/D91NtUOhOroQ6RB+e2lj5JJky4YP6ylVa++hqlFyTVbKcgK+KSNHX6ka
++w0/kU5DRmGHIVrsPKaHCouhX48FI16hGCON/IJswQJNcZ/fbxxyFilvi13mRNFnl
++BEUdOfXPgXI=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICXDCCAgagAwIBAgIIFic5b/DyruowDQYJKoZIhvcNAQELBQAwgakxCzAJBgNV
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_CA_Untrusted"
+-        set password ENC tsDhkk0c7Lu+QsbABURBBbmKnSK2to9m0mKQ7UtVJ1r0X0qZKcV3TiAf7otF3mAFLevrlV9Sbup0Qq6+Kuoi5qCklHufWG8DqFkEEsCuTcwrUOyebYtrr2/ytyxgdHkQgt+SXUCD9K51YWYHt4OFN9ZSYNrbKnPSgsGCQfatL8BGeJUSmuej9JR31rB/X5bBiwUnlA==
++        set password ENC 9s6kzMELEQLmC5fJhUWLjF20dC3HWWwhpUDfnCgSoKKNqiN19TC8SzWsM5HgNi1ZMJuq0K3vDnk7AIW3K/scL6cwIBahAyqc9mibKKwrJlRtg7tZC6c22Nos1a6X+j991bjOA5Iy3bb4kY45m3TOnMHyHn1X6k6PSF9XpsXc0dGeyjCOImixS5MvkvqSiClbBVXT6w==
+         set comments "This is the default CA certificate the SSL Inspection will use when generating new server certificates."
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIny5q0CAgRYACAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECPj7l5wMRkPdBIIBYDOnF066kV76
+-NQjC+lMIGmMOKub8hNkHxIooZ6b6NelQMGU8ul8Ij772jHB/9c7pyDKoS0ci3uBf
+-rOkItMAlNK6waxj5H7JZHQf3WbyvP4vgsmf9x70nC81VTUuMqZrttWhAT7DNhBg+
+-NrwK1qT4g5ZBg64BMsDQLCcM09wdAtuQ2GGSxrAcjyHgMa774M13oFR130CYpUr1
+-3MY4uxsoa+Z0IwoprDBj/Q3GwysAjYbuVJr8WeJl7VswBG2XgglMylsRvYu75gw0
+-GPv0dPo9dQf9ZbacxmyGTclmlWPIWPpG+0uu1+ZAjoy3ZpYajX5mNgklHo1uIhOp
+-JfM+qitrS8zvpatltLaS4Ip2qHLoO7HowFwUBV7lE9CKotI/NwCmIj4ApZwAenMS
+-gY+VTq/k4UfPBz5yIUb/HzBVrYaspOGxJ1eDBz8FjOSV2UK5X+HgTHPJRoeTWPR7
+-hM00R0ikpWg=
++MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIWAez/CVfGjICAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECFA7iMI04t2HBIIBYA41f8yzcNet
+++FKg63Lgxj8bqMLRRwqouV4a8tPq1MQfAyAdPtk/Zi1Ql4vBaL9bX3W7vsxqWCNq
++t6X1slzkcq73MswkcCIPemAhVJ54sckoB7+/mYifPPBvRJwnNyriXpr3pNv/hP7j
++KmZtF9rtm+lcZ/HVKsGijs28Q+844NvCcQOVDgmlwS6Okp37wuv+On9+aDr+DRQI
++hzIwdDPzqXC4UHhewTbbrDpV/Wkpiq0ZL4FF0j7LVgLTTPpN3edUsTXOBqOtq5SE
++6WLly8aU+GPyHp0l6H0Tda0xUtKJ959SVoIuArB+rIaRMkj24dyqaMVumBiFKuh6
++2t5ubQ+IVMbI3f+yAs+9zCxVjeF0Fi7BOE7KFQ8ujkKeTT5qlMbqGNjRH5G2Z4Jl
++fUF6r8GzmIeRODAQ70NWJyzFehBZDX9dHr3EG/QGy5B94WtGwPclJ7wP51NERHY1
++BJ6UotA2SJQ=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICZjCCAhCgAwIBAgIIKiL0+siChBswDQYJKoZIhvcNAQELBQAwga4xCzAJBgNV
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL"
+-        set password ENC v2QkpH34uM08oXdLzaL/3AV1ra4MiT9ACfLVABNn5VnoVxnzqlgQaril8wNficvhYZESldfGrSP8uTe01o1lbqNkt3jktXlrmX5HckJYXDP1UjJy2vcKUGxhf6YNT+LY8ut854cikUSfkqod6RO1RIORZsAeRRDdq2cU/ny48e5rpfaQunBPnj26r9KcK/hXE9340Q==
++        set password ENC rQi8EQjo/Q0YRXQfaBI2Ghr09wMZ8y3bqM6l8ARyLquYWNfYkrjNGiTUSoMy57pYkZnBXHNfcfRouWX0iG+76j+DxYrslpsy+89Go7zjx+QQX619sGGGDT/525uxuCKZpFaGLMWGRhOH6OrncDOBDWjf8K3BeBAPVRjdsLch/GQj6N1r6VUb5idLEKVMI+ee5+fEqw==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIqLmVKfbCOKkCAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECGDS7ONCmVKqBIIBYKaxF+Off/uZ
+-sM53UZ02CS4h3x9CPKNSL2I0oGamdjBgfsyb9GMZ/Lfn9ypz1Zz3mibPHqWrHqa3
+-UqhjxOksp+0a5Ow858rErJvgcf5u8dn4JQ5uWR/fpE7cYGqzig+8Vyn691i21Igo
+-28urs1XSEwuH0MyQLRSYJ0vGmdwhDf0UXttdruqqQbBgFr32cf3Td4TxMaBqsEOI
+-lrf9qHneNVpv+WztRSeVp2ttsemx/BUFLznvXRa5/asfSmWU9Q9jaR5nYe1Jf4ji
+-KlegKgrTLMZSW/FEkPE0/yr4jBoF1L6EArp8CnLuitvHP2O5qahWxzYxe4gP+Sd/
+-cpoxMO0AayzXha/BxTLK3d/8+UhBRMlgJJQecoMve1I0VaWkpNS2YvMHZkESrNGR
+-bXWHmNPDpjrEqecfFnseL3fSN259QIVPIx/3sBpxheLUJTN6ryrOSEkDGvxf0ukF
+-0qlx2bCDarc=
++MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIQKNjiGNkwYwCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECBIBEuwOwYLzBIIBYF1WwEmjsxOm
++LG9fuZ5J6uB8FKUgl6QklflEprA7XcRrWmp29j0wn/qA4a6ayr3XUXr97GfJA/wR
++SotfAcpSN7RrBBVt2l5tXOflwj99ojVVHQlhQC1jzatE8yaapUwwNNMu+ckZc2yC
++XSihR1dtIZTY9wPAOmeAegxQPMSkrw5mwLDFAIFz+ZiqtDAyh78sN3EUAKPbxnvN
++fXEE1uOSozaa1BsW7tuoWYfeZG2xNxDO/grGWrZ7xfeaA0LTFFTWXzTbT/rV+q0x
++KiVPQZ3m/9JXs6J6OjYTuWU7IKelSAgQ7TBZhooLsmT73Us/mM5pNpDEtooGN0oB
++y8EuhZo1INDIab4lizs4sTzcyb8dGhf20iFsC+qa81BdnchuWhr6wVUO9xDG3bdu
++9Up48B/2s7VN7lH2yQhE+t89kGzBJMGV6TK1/SFDZkp5aTRiZwauCA1oT1eBzy4V
++KlpyoDBvOpI=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICVjCCAgCgAwIBAgIIUsRMYwa7QgwwDQYJKoZIhvcNAQELBQAwgZ0xCzAJBgNV
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_RSA1024"
+-        set password ENC OZHrtc6CdoflNZHe3KnbTzahNjEWuSI0tzY2NEb2A/p9+3WVcuUJgtpEmJBvrAcg8e5OYhCM5VNnHoR0OVqezdlPCy84zh5h1U5alLQpyrCc16q5W92jvZfvfIQAPWACj7lg41RNmOI6Ecfpt1M6LAgdSS0gvmAA1tG3f4j9r+UxDXEUMKfmO7pfnzmXGdn1bb2ktQ==
++        set password ENC VP+oC7iy2itEXAPcGYnEa2nEPcEl5ttzTHM8MuligvFAUQRhdCVH4dDyNW1AwtB8prHX7V4nd7p1Vp0xyWEWYUp7dWh9ffi1eOtU7BCO1Ik7ywOKDlmNK5qBUotBZzuJbIyZPYxyMzA8hovrfi4Qez6m1Zd4tdZIjwlST/Bi9Oi+B5S4jQ9gJXAiH8y5tKeHDbImAw==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIHzKBG7Ro7tECAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECFr4DUstupunBIIBYDo0cHeJIgKn
+-TecsWvEqkidJMGIKBqrYIAgjoiY8X+uWSYAKW1qKciqY1Wyex/ZgGMkiTgFrdopW
+-KCrDEZoxTZcrWbKMIPfT4fwtmtnAc7VAxWuCoLny07bvAxBwDT8LDm0vA70CA0qi
+-iYjREDyhuPCwfFmr9wc49yYGsymP1e3aAec/LYKPpsdPN3O2/iV7hNbgLkSA6GZH
+-MjrRlvAT3KvSOzN6Ed0P/E84fYpGcq4Dh4NJaTw4s7jtPCnIOKwlhzuCu6SELhft
+-qPvBkAvOsn7diYzJfdZ/XyralO2TvRx7RG3gjuUQnXTaHyOVuWPzgRNpLVWW6gE4
+-k0aWm7GRktAdDsGmfRrdAQ0s6DwvtCFwajyMD/InONhrOdk0jmAfOJtAvw5unW6p
+-PjxSspVBzRG75HpSYowJYxG86GSYzH29kGi08Qq5cfr/HJWKHtf07ZJV0nGtgQK9
+-+/zAxBhnKNM=
++MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIDEjvk+exV1sCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECEPVut+VZgvaBIIBYPakLtmNnBW8
++YHavowBMggLg2bcHB7veZ/YoW1cjYR72ee2BsVa+VqJHru8Pf29OJKKgqFC95XBY
++kmLf/uHTCt+YlCk0vhjh7w62mbXndg1PhoFLjXgZIP9aWa2o/GGxJMnKx0Rn6bts
++njBZemMe0gDUSBz04oo9JHW+Tsw0ZbJrdCihcAfDYRN8RuGfooKTyqFxnwh0dJnF
++S4lq6A2x0WMWSehT/YE+YhQZSLI6KCYrK9mp+DhUlWf3k/YJYm2pCdzEzSiAQphG
++57nzDEwmv26/D04okELi/Waq/HznMmQH5dyQYIK2F7w26LkvomcJiETJpLHONyoU
++s9opawMGtqXUeoPAHO94ScH8IGuDV8wVLbzmF1LQ3LW0Ic+w4ceppSmKYsFeAM+l
++r0JVfvxYGCmSDu+834l/J+9eSIz+ixbqeC1TRvmads++GfZ+Mv0b1a/8Bw4xGAX2
++67+cN8z3Dbk=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICVjCCAgCgAwIBAgIIaijP3ExV6/4wDQYJKoZIhvcNAQELBQAwgZ0xCzAJBgNV
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_RSA2048"
+-        set password ENC UPzOQwY20zvZwDXNXh8Et1+LKo/R/gwFG6dbMDem298oHGf+JcXskLLxsbYNjaio9GSk+00c5N5XHcyBydTsPWbCGBSl3LgrhW2gY/SQzXonrYaSVNF5WmQUYYlSm/kLKMB1b28g0OCGF32XxlDJUJhH+nEr3KMGOouGuhkTykD20hXhgiVMZIjcxgYju69EcwcADQ==
++        set password ENC y2+xW2K+sV2YCZjsVJ7FtpkSxi8/PYTpci7C7xEP5ZctfCXCxdH+q+JDJ2pSQBeIX24uriSaB6QDjnaxJs1L1vYAQkfMEY6KCcrDYDXpb/32Wx3h45kgWD/6goebd4mJlQIewuORMUa0/nX7D7BFRd9ddSD7+odIgGUtwjj4WbyQ9OJltok7WZ1B4ROpISX9N2jBPg==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIcBqY9Smw3hACAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECD1p0fesJpByBIIBYNcUhfIuWbar
+-jI8bwADGacVSvT8kvH4abzR8jvDMkAfNhgSvde5gCDMmrppC/A5zE8UzJnersn07
+-Nq07DmJGXyahBb/a+F/rutOrXrphQckAra5Cizl4xABcJ2wHs7/ujaykAb+8saYQ
+-I/DRRlNztLF4AlUbjoz4EI4Up8t8zcwiq1euYZv4iu/sSK4ixeKxJKwaCpx3LpKh
+-+QMOaIZ6SaXQwpTrInF8Iir0rNFQUhnS/djOent2qCJeF+ISyA6luLx3PoZEy9sX
+-z4ndb8shkfZEQGejJGpq6/wGLPJnIWWD+vzX1lb0XgMWkr5wryVAwSZTqmiebGOX
+-Lncb3vI8klpD8JZzTvMt5F+LhH/V64vBcgmE13TkV8RdaQvJaMzkthzqDU2fJx/j
+-AGyfMzkfTQqKmsqYZc7yX7d4J7ExSEMMTnflUKaxLVQ9Mb4Z+UCNhRzj6YMeOcYR
+-PBo+81NbFWM=
++MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIV9WX/8DS6IoCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECBufYO7h2XWKBIIBYLlXn5kRDxzI
++NDXo/lGgWUhdmjZdd/jp/63etfHaZ6YKfBt2AYwcBah2bKHZFP75voGiQgm+Qqib
++0AHaLj/IlMLPNCMRWYDpZrLhseJIIONfd08i17eHKCFZTaUnl4D2G3KZmE1VOIpb
++UxryB0JxfsqvlCx+WD0g2UocEw8FGXw5RnfFpj45m+TLJQhmUIG4nmp6NzgeoHBJ
++RfTfjdqJSUzFgZmdNOvFfDesjlMLBmhExTA2+QSya5lnurlEi2LEYwfGyGiLtE9A
++ZD+74DTaFXRir2/jTyXPWyVFjZhAqaNIiWOQPe7RVG1Ae/zx2BawWsLwdtoG2jj0
++qWiMNTtMbMMRZeS9jKhlipffI6zx3MRJkSI2wHkBBYa7KqBH4iN+Yi0xqMr0TUgh
++AtsTryaCCk//RBvn3k0J47lx+amHpwFRp5qMzCMQOhhb5lAqmv1prb/OGuYUaX3V
++7sGk9R7+GrQ=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICVjCCAgCgAwIBAgIIJtSICNVTsmIwDQYJKoZIhvcNAQELBQAwgZ0xCzAJBgNV
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_RSA4096"
+-        set password ENC UJ3Y2HTqnaIHlsIklfRFNFt5o+s2qa1om9UzVHsc33DZ6bLyeS7nHmsUdogNNm69dam+guxss/7wNLkSv2Axtqum/5l1Jt46XGr6hIuoRgkvvd+Nx79i2deXvJXZDny+i+Z/Nanke9wYWpP8qBPNHzxaHk8BNzTR9XV+Kc6SOnkIP92H9PLu8YZclyjGHHB3p2NaNQ==
++        set password ENC db33sQR+XOvia6djRZrM2sX9k3DWvYdWqeufoXJJiiZq3G13Ollw1PyfxI8HBz/jdmNhYbz9nUN1SkRLOyXXsSjE94UDuuGHAuWutNkFnA+OWEBIYB05Y+IfS0PKPn7/qTVQ8w0ZZ8fbcikHLcmCOfIUPTQx+ZcBtAo5arWSYQ5O6h7wIIREDC0JsGeS3eGetP+q1g==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIAmsv1yd29I4CAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECFPYIBH7mEe8BIIBYOWaIYHCAZfY
+-dRxNK9kFbhhv9eVeY8r24irtN8s3YdH2mi/SStBw3lfvxNgqphPzVqMlVMTKb0pk
+-PaFhkt7tU+d7nKdDHwlTtc38c50OJjv/EAZ2AUsoUbVXP2WVHGxxYLWmcwzXDsxy
+-bOe6LcqQmVw0uGDWrXntHYVjRDswx1nypjKvFhHvJPQfWEHHfHmZn7eW/fYgNMUs
+-n/cehjO2ryfi/svfeOx2vdh53lt6FCS0NYpaWXGuQdtpJNGxoMHG8LHd4ong9B+m
+-8OU5HD3GbidUmOOZtk9vKSzaV/0+iexQZHdIMH2i5WXqlz8znMtP/iFiog2Mx54B
+-CvHjlenfl1NYuv75Xt3QF+Rsvh2NiLAPu7lRZ06ZFvmXM4Cng3lxqYpQNSH7PavP
+-BuxXkFfUd5KCHKHE0GGDityzF/oLtOl22dIbT7/+2B2PbBXK3PyBix53HuN8agtg
+-BrIXeWy7CqA=
++MIIBtDBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIzVKjHmgSIUYCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECCeteWyxHO6GBIIBYFrEBwwqkdJa
++eDcJptUtrx6n9Nl00DsEiCTjmLSAm479obk+ddUzDJpAKRxmvWj6jaycJeTIYxrt
++5b2dvJijNn/TzX7FAViVaXgIzSglfb5iK8KoDVHgS8ptuz62bVnkMhvId3XGpU0O
++oNz9NgLn/2NXAgw/zmD15tf14qFZhkcjSisIjkFox6PDKZI/gkSz6So1MPtjohFR
++37ZcuTz9sqKOYjO3fP3BgKQV4BVqhzL9Rc86CCgi/luHFciIxnOL146r1RaB5RRG
++1IdqAxtxJGXndgRPuw51oe7bxYwRak7Im4ivq0x+DxDEbHeE2y78DX+9EUnigR3C
++CVyh0Hnc/Q8vwpt78EDnpfnM4OwW1dZ3addnHYYtygqEhdg1FadzAQ9yIC5KJIsQ
++R5ZhAtYPNVnl08C+f20xaygpx5gYXZF9grv+2Pqo+sRvldPHweI5M06XOMRmqj5F
++rwqnRvfyLVY=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICVjCCAgCgAwIBAgIIXBKnVoTI8icwDQYJKoZIhvcNAQELBQAwgZ0xCzAJBgNV
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_DSA1024"
+-        set password ENC oNZ1gz311HusN6fi+X6W0yGPxHofr01GELGJqeZuFaOkwPDkovlAhy9GYY+lFFlZ0hESjCTSiA9fDqlYvgZtaFuFkHJvyNqAv68obUrBi29Rzef9j8NKtlQH0sLlnXKCP/8GrfFO8hgznV9OdbrGh7A18Zon/pF6zhhNZ3yJHeHiksc/FQC0gPZtRCN+uGGACda6Hg==
++        set password ENC P04JhIB2as+aZfEhSYV4kaWjmMpP0ZDDwhjgsVXZEw+6QmqRtsh8ZStpWtK8914WXE9hQFApK0yLWaJJ3xFxPQMffdMkEUbc7DDdgnvmE0cLeYHkjY0blUuG8gUla+pvvh9FJ/didYlEJ4+0A0WW8R8dp+nMlYF5vXwjXUaFhuRUgwMxzxdpEVg29wusvSP8KmfefQ==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBIzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIsNIFI6chSp8CAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECNIVj9La/UE+BIHQY6wBh4Krpll3
+-X9kWBSlU31nPo+9kWF+DvUw7QkOBpGD4DOofHR6SEiAXILk9TRo2qP987t2YF9M4
+-U88b17c/uU0vXqZ0kMG55+RjKEUfjKCouVV4Wl4LICxhFp2rWMLJIA3etzdt3MFo
+-JUrnicv9GMIDDz456dFIuJLWtIyfQxhZbpfwNbJh0moly2epj9PuKXOfw5pOVB87
+-QRi5KxAyZO6HgS9oIx2og+5yy8AZLHz55Sx7bRfElt+Na6PD9/gEvGd5crsfBB3e
+-ZOHms1o0cQ==
++MIIBIzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQItEGgPpV2LokCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECJp+MPTFEJCaBIHQ/3Adjc4kIqUP
++QiT58h1hfWbazq9GeyyveG7OpG/GXqjlEf2wgi7xvRjmPoRDd/tCfPRr/7f3HAPj
++IjkCRvHlaB4H7N217/LeUd+b8scIY1A7Q3JNKiErqCi0s+3PxvxvGgqE2N+oI/aq
++NoOkWiPPcQd+/BWat9yez0mLU9Pc2WdiDua7rASphgQdH9YHLJOp6D9sfqd+KBpS
+++Ar1QeonLuX28ycdtUHJInsbnOeu5d4xVOhvwcPK6NM6AFcCVELhvS5+E8QFTBnN
++0loJnIArhg==
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIIC1TCCApOgAwIBAgIIK2MGo1j1fTEwCwYJYIZIAWUDBAMCMIGdMQswCQYDVQQG
+... skipped 15 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_DSA2048"
+-        set password ENC i29LziNBGkOw6ZhcQ88gSd508GrSoNeGrwQbYGrcNC5F8ye7REjah7Wx/oEf2MPUGLd9arguTFGrbXIED/6wSRtKv/m7o8m3rxDJ68vJ8tgXrWAwB3nJPNZ8lsLhwck3v1ZRbnSGE28g87a8qDnA0xl7pylKDeCbKtQnVJo0JPCx90951KCVg1oWkusHpD7HQFgN7w==
++        set password ENC g63EEHZcpmT0rKXrNhjn0P1ZR2x4BjsksH4D2o4KMIlcC6NbMd9m55xL8GJ4+0XfTSi52xMhVzCNxfcK/HwDvT+Cy5rSK0tnn9YviYPsXXYlch4IeDToD9IhXmlyRxl+6ePSPVVIdVHk/O6gGwM29JKXrhZBNoyJPx3/szrRFXdvtlxflgbcVNNqzWb8cwheOJvkkg==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBIzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQINGapqQDJqQQCAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECDicjzJ1kWeEBIHQ0F87qe9RIAuK
+-rjFexM08VO1ZNb063b/rs8IKwb69hKU6aQTPpMzfteJ7Otcyn1pCNNpAs5GAwm7j
+-u/yqny7nakLeL+21MYe0LbxfodTq+1CtHSfYKu49jQ+lwnH5cqCj7vt+iAtWfEFi
+-KPmi560kAbwE95tzJ+I1iGwXldK9l7LsqJdGx1fHEwJPMXnteZY1vlv8quH/M8Yw
+-m8+CGe0kEz1WWqYUfVjtLi9EHVjdRmfmN/OBYHW4CkFMXd3AGxAKRbMVwIL43CQq
+-mKg0l7bv8g==
++MIIBIzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIbbKvKAMeRpwCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECM536C6R/wMKBIHQ9NfmQS96vpOt
++SGDBlJ9hUD5oLcO4ZvfHObI0Wdkex8z0HWHeZwjYEbS3xb2sjMtI1wuFR2Cxcb3e
++DNu10kI9Rxsp7M9K088W9ERzMMf0/+IIjy6HKriQ1sMq5sCX2law08X1695CmG6V
++cUgIpBX+05vhdeLbfB6Lu4BHnIDfJUHc6Q1DRPnBuSfys1dIQ0v7wxdNY4LZQmYF
++k7831o82C4iGIyJ6kSdaUXW8IUkrL8sD9kiQkcW6Bb4fOa/Jtm2/d+Bji+7Ruq7j
++gVktNsMeHg==
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIIC1zCCApOgAwIBAgIIRzNCfOvsC3kwCwYJYIZIAWUDBAMCMIGdMQswCQYDVQQG
+... skipped 15 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_ECDSA256"
+-        set password ENC DsOeg8Mi9O+R0bP96L+bJcRsBWraAaANedBLyedap0gVZjaKZzfW596Bh2ZVjaBnDTgh4R63Ho9fGmpCQl380rnMo0JGk+UbBU0socn2JL7yjfCTpF3mksyoPWJWpu7J46IfYTuNnijzMjy4OJg/TP4pXWlt/GsyARdLM7CgPf+tsOlD45NkvFaIsxectDu8atwGSg==
++        set password ENC iyYTkF7rkUxOEYX7YOfVpzrYiG+Mi/PYlypkmm4RG+bUA4SYrrHodUFfTrvwp0vlZt7B4Kxe4G/BRZSyRkp6l0xROSW8B1jwPO+rDpJwwgQXvnZFEPPxM9P6NAWcSSx4zkHyLT6enmfH61BTJePO9T4Ay08Ou5Ay/LyKqsnGc0+UXIA0qDfXI+kV6nr9yNbJpa+AQw==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIHjME4GCSqGSIb3DQEFDTBBMCkGCSqGSIb3DQEFDDAcBAhwKD3CRahzOwICCAAw
+-DAYIKoZIhvcNAgkFADAUBggqhkiG9w0DBwQIxjfpDdfdBwkEgZAIJKxKq5hqvApo
+-iyDNGL5craZvWuW5waSp0DuqKgvrnUqZyZpdKHvvgQEAfWm8sOONttckIgx99ndN
+-JnLa7P6t3+gX/H94RXOVihTuaalzn9MpYgrRShbHAfkI0Rx4V3D5/mVLbyPEYYDf
+-NLeLNO203g4sGNJL+mTElPfgsVZ73k11MeAeR+cfovVjRlO1MeA=
++MIHjME4GCSqGSIb3DQEFDTBBMCkGCSqGSIb3DQEFDDAcBAj4YKlG/cYOogICCAAw
++DAYIKoZIhvcNAgkFADAUBggqhkiG9w0DBwQIe5wTVz+Mvn0EgZDa+A3znkYx3o85
++roZakmAOeiQqHVQ6sNJHHNskSF3aNbjHkdgsFbYU2cE5nb+2+XdK9n9zB6ZNAcQS
++a6YZ6QMZBbBDr2ihEnBLJv2nXupuHfHagnms06DDX8EYV9iPeUfA7ByTc2naGWlm
++St/zmITHIwUTWwiHW4FzRC5Wo36rthR6sJFNNNmi9aJ48+shlOo=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICUzCCAfqgAwIBAgIIHfiO3kIdTHkwCgYIKoZIzj0EAwIwgZ0xCzAJBgNVBAYT
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_ECDSA384"
+-        set password ENC nLItcYU6IPB04t+7cYrzeWsnnQWR1oSSyXAGAPWIiXvS7D5SfaedTMxYqggBtaLx2WsK0ApKz7qVC0rHd4uT+5NqxQxV/VDgjTD6yD1yiCIvlg2P4v1UkkG8DzhMSga/g7v+4SC8xzeUOsNWtCOsSwTVJmU1luiNbeHkvNkcAzoAs66HJ5DkhX0IYJfv/2gFIrUN0A==
++        set password ENC LsF8fy/xfPjhAASB4oFPLh4MW8/izCRRocJHweEa9nUWl0PsbSnFfODHCEEIO8X6z4/1IUVNJe+ZaW0yZIKTWKDp8qoLp0PVSlOPTBdW2yRXBeXHwrFujGtpc2lh5GMsxmOiZnyosPwBgwjB6iddIYKXj/u21XJZQaS2VKzJfQgDjSrCMdFRGT9aH0K59yFJwabuGw==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBEzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQI0uUSiFY7XaYCAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECN+19VqVbV1TBIHA9963/CSuzu3F
+-nz4ZzgxVwO9lOCLVGkFgATvb9epTox29xn1qXvfMzbsc5SruXZQDM1U8JNHKSttZ
+-OswyrJKkdPFUZGH3kD8Eb/rx33xVKGTToNSZ023TrXQOeBMowx5boVG8rLQ1Cq1/
+-ifVc0Ct8FFw+xERPsOEKjocvMUI95ijUq16nKmlJJoUmz9w8gGGP6VRJsil/XRbc
+-iSJtn6oP0UUiPW4H3sD5J4vTsvc9DJzOxUxjpv/XU/aqnYtzguyR
++MIIBEzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIMZlQ7O+Su6ICAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECK5Mpf4uqmKxBIHAJBtv+VTZIZfL
++og1f/mEFtFQEBQ25D2OO5+NGVLIIHoBMzQaGDCGsm/pXifyAt10DCQ+OwyoCmkNm
++i/aHjd4J4tjitatw+k/InDnx98iUmHjFbyJz/po7VcvtdZAw53mA7JYFEQ/lhLYT
++yWVkZIMu2ZHSzJ2osmqZwo59BAh5n+ENFS0hc8YqUBa1UPDXYe2aqNEw/oDLET/R
++Ps8P/I4PKSvimK3hp47tQrNBw/kjvbqU18AqeZNFMFiDnPyLZ/Cd
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICkTCCAhegAwIBAgIINHp6IdO7WUswCgYIKoZIzj0EAwIwgZ0xCzAJBgNVBAYT
+... skipped 13 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_ECDSA521"
+-        set password ENC ioclFyHYyGkDu3d/MV+23r/SOKRmDZFdwAZReIJ9tvJQPvYzZmiHQBg8eKN9FRwqmFvtfAXz/CZc0I/FmSlPtX0IF9cy6oB1tm86pbhCvm+NkgARjYnm1A921r5s9NI4gXU+WUUTUMHN7+0fEaGWEU6VBQ7UciqhUoGIb/Va6B5Lu2TVzOXhFuo5e7j5IXiRbSJulw==
++        set password ENC aKD3jgfjGetHCyslWkMOdAemwcM6p2xhkshEzeqKDpt7KWY0GTNltqwqqSwNxepSA4B7aZadbdVulWo5idSn9ZHUJLZStTILKQHIK54SmG1FS7pHXieNbzYjJ0YjukV5Z04dZzkaqdZf8Zj7SmYz84iRpeAnnWxdHxAad31ZNqm6DslIe7fC2nDWc/c5nSnw5gDP4w==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIIBSzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQIt3JgyEDz7HcCAggA
+-MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECD+H5D782trYBIH46oSwra3xcPdz
+-wbY/YvdI9BCB4XePKOJSkEvib7OHKwsuV5HLOITJTLGL7PjrG2W4v+EIs/kbTTKL
+-SJCs+vkoR5yyNf6Vw6fhNgQGzUygxPI3SLwHmzgqSS37Ug+5Lid7lNhsNNElpWfB
+-PdSq2I3ndCBwA2UQ5k4k8MS+AW1pwHURsb6g1YXL8OuDUUDNi5LamfeIsszTZKNg
+-sYwO92neWjgha+1B1zj9a6/hsCgHTpavUcetS3WGlRdZ1UjTiy8QRb2+pitXz4pO
+-uudEAemzzM2RVhU0NhKTUkTwqiR1QJGd7VZj5N/V2lM5BXey46JcX10Ijd22Eb0=
++MIIBSzBOBgkqhkiG9w0BBQ0wQTApBgkqhkiG9w0BBQwwHAQImeaa5QmELVcCAggA
++MAwGCCqGSIb3DQIJBQAwFAYIKoZIhvcNAwcECGH5Pud0yLCHBIH4PyDlU/eq3Y+S
+++7G7rAbJsoDFTvydG1NbucH/BXLfY3KHvmsjstQmTi7c30lfywOfbaOqVg/H+jIp
++52RQz+tOjcm16P5T9a81euhFPCsA3TzIk4a7ke+Ck6vjY0smU2SCSjlig/cne0Yw
++MZPVW0ZxgzDBH2IDhxZhtcon7zFiyTHObYtP81/Ekl4ooCuNw0VFHxx/BOkOwDjD
++LVpTvLOkkZPOMJIhfuE8zlpcDX/J8uuKuUl8Apk8O6OGIIMcZoZUHmUq0Jo9Hsnm
++KaY3NlmQTmXMqp9myHJHfK+LInPm5H8lIwt/S/OClaUmBIrgRbf07WtGc3zBOak=
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIIC2zCCAj2gAwIBAgIIIeTu3gNtWkAwCgYIKoZIzj0EAwIwgZ0xCzAJBgNVBAYT
+... skipped 15 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_ED25519"
+-        set password ENC L1e3s+TMgvneN81TUn6BSL3lI6tChK4ERuScVGw7eat9I/fVHJITZo1VPfI1TbrCHHk7jyN5Oo/P3TF6WGS9smz/gyXzJvHotjiFSy8LZ5c0qS+GIhYs+zfNOztHRkMBUm6yi9dESI983cXp7EyzOo2pj96E52DJ3BKqJoykdQo82ZB8O83pP8mvnYBbFHIcQu1udQ==
++        set password ENC Fx5hn5/PhY52bCR0owJLsHEGmqPk32zHHeYnKVGkny+F7iKBoksZbQtVDGXc9YEo9GZZhOPiVA/bSTziilOKS0+gUK5Rp3gvYoKt3oBHtwj0tnIAGJYbJyCd+n8eUHq5JD1J4WsPGt9kGYLs8IpuMwhn9DzmQTswKaEArZBrgvnD8nVUxspXkrAdA7VduxNeKzP6IQ==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIGKME4GCSqGSIb3DQEFDTBBMCkGCSqGSIb3DQEFDDAcBAjb6N12ncqcbwICCAAw
+-DAYIKoZIhvcNAgkFADAUBggqhkiG9w0DBwQIXVG/RsgUqN0EOA97UHM5OO3YdDr0
+-9U5u0YwhUbRObi3lee3uRuQhsBDht+UtqB7VpHzxEt4ageasIdQDEWoTQt+I
++MIGKME4GCSqGSIb3DQEFDTBBMCkGCSqGSIb3DQEFDDAcBAglrkd7AYMqAwICCAAw
++DAYIKoZIhvcNAgkFADAUBggqhkiG9w0DBwQIXvV4juFdOXcEOAbUDsOYQzkSLy4/
++vgQmdRQZa9NdqTiZDOFKsPz+fFKvVpqToIaC/fASv4qZdAFf4i9+x7FHkS0x
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICFDCCAcagAwIBAgIIR7BZ4HHSMuIwBQYDK2VwMIGdMQswCQYDVQQGEwJVUzET
+... skipped 11 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+     edit "Fortinet_SSL_ED448"
+-        set password ENC 3sSvekBJqbp1HM55iGTYTUmcyIyvAvisF0Zg0m4AC1ibc14qhZsgbyCQwFsaNfiB7tD21BehGjeATAydD4ZCK20VucWZ9isthg5B+ZjqnLQutqAY7EOCwy5XX6HqtQ5MHtjrlPJtksJEdLxu7r1K6/voef43C0ii6drMI4TfT+CKNLXRnZX09r452zKEoiA9xwp4lQ==
++        set password ENC +670wsnFqjS+79KmvY31lpHv3ISEi5SUNLccqjzo4BpAVMKdOOK4ZfOSDMO9zRR9ZDfqAkXqRJQtqhMCqUjA3FMmJ2ZzXFcwa2R3mtihfp7VYrEl+JSm1LiAGtaH+NdmDGPmp12DIyXW66OX32UIMQ85BrH64XaskzqlOiJ/R8lSAl3yvrxZbnW+v77JJufpn86G5Q==
+         set comments "This certificate is embedded in the hardware at the factory and is unique to this unit. "
+         set private-key "-----BEGIN ENCRYPTED PRIVATE KEY-----
+-MIGiME4GCSqGSIb3DQEFDTBBMCkGCSqGSIb3DQEFDDAcBAiPGOXhge+u4wICCAAw
+-DAYIKoZIhvcNAgkFADAUBggqhkiG9w0DBwQIeJPxaZ2rM9oEUKW6Kj5osR5fLOtm
+-swxsM3QRR2NtkDGiVCRKj/rYdhIPfXp4F/hY4v1FBrUXZYMqb2/EZq9bo/wnqswf
+-CmpMkMHaP/pMWJgjMr58So+cOIBu
++MIGiME4GCSqGSIb3DQEFDTBBMCkGCSqGSIb3DQEFDDAcBAhaS3BqnJqkGAICCAAw
++DAYIKoZIhvcNAgkFADAUBggqhkiG9w0DBwQIkLCmMuYdJiwEUEuNTuLoGQsYd8To
++PFLNeT8ULjLuASmSTUfY4BRjpH7fJ1MggJp8KIY8bWUcAuVgzj3MHBPo960z2Pxr
++Lxz13Di0fGYSDxKjits8B+vA5QY8
+ -----END ENCRYPTED PRIVATE KEY-----"
+         set certificate "-----BEGIN CERTIFICATE-----
+ MIICXzCCAd+gAwIBAgIIX+6zX5AAlo8wBQYDK2VxMIGdMQswCQYDVQQGEwJVUzET
+... skipped 12 lines ...
+ -----END CERTIFICATE-----"
+         set range global
+         set source factory
+-        set last-updated 1681944660
++        set last-updated 1681592674
+     next
+ end
+ config webfilter ftgd-local-cat
+... skipped 320 lines ...
+ config user local
+     edit "guest"
+         set type password
+-        set passwd ENC Nlmqm4MBzvkZV2XwpbtG+4cMXDSRxMhCN8u/2N2zwzgltckQ+OvtFQk0ih30pjIKX8Tg5M1BzA2ENfbVK6ksu8OyucG/Fau4E/c7O9hLLB7DZXs7ccJ11JEaX9RFGA2ALyvHiE1ECLz0aSqxpOOwblR2cdw4XAnlLsYyRBRnsQbmYF65sROz40cu4lqQ8GXr5FuGIA==
++        set passwd ENC 8Hj4BX/qAEDftl4Fz3bG9vMk26+qCJxiJlNHq/HIdWyzPiFE9EqcM6OxTazGU3+YecObob9POI2gXok27ZGDmFt1xPAhfUBZnm4wVwMUBK+8mF93DQom5FVqqU2smFUoh/XCIEhGboBwLcTO3qk2xB0eIi+odA/fQIA7q1v+9mCMhSeCukweTo0XdePInmj+oQp7AQ==
+     set auth-cert "Fortinet_Factory"
+ end
+ config user group
+     edit "SSO_Guest_Users"
+     next
++    edit "remote user"
++        set group-type guest
++    next
+ end
+ config vpn ssl web host-check-software
+     edit "FortiClient-AV"
+... skipped 210 lines ...
+         set web-mode enable
+         set ip-pools "SSLVPN_TUNNEL_ADDR1"
+         set ipv6-pools "SSLVPN_TUNNEL_IPv6_ADDR1"
++        config bookmark-group
++            edit "gui-bookmarks"
++            next
++        end
+     next
+ end
+ config vpn ssl settings
+     set servercert "self-sign"
+-    set port 443
++    set tunnel-ip-pools "SSLVPN_TUNNEL_ADDR1"
++    set tunnel-ipv6-pools "SSLVPN_TUNNEL_IPv6_ADDR1"
++    set dns-server1 10.34.0.201
++    set source-interface "port1"
++    set source-address "all"
++    set source-address6 "all"
++    set default-portal "full-access"
+ end
+ config voip profile
+     edit "default"
+... skipped 33 lines ...
+         end
+     next
+ end
++config vpn ipsec phase1-interface
++    edit "Site-DC2"
++        set interface "port1"
++        set peertype any
++        set net-device disable
++        set proposal des-md5 des-sha1
++        set comments "VPN: Site-DC2 (Created by VPN wizard)"
++        set wizard-type static-fortigate
++        set remote-gw 192.168.122.145
++        set psksecret ENC ae/8mWfqZeZguugHs+OM1F7vYJZEbahvaXEumbNUgJXgxK5ynd29sRXwPX8FX9GfSeprKB2/HYvRZ5PxVaV684L/irx3GTmX/EiHMr0sArIrCNsoKGVLuprKz/X1F0aun675aRlrQTDKbocAyABF9I+/MT191EsChSYGAzmm5A2FwP2luelRo/JYlXuIxMxefuVwXw==
++    next
++    edit "Site-DC1"
++        set interface "port1"
++        set peertype any
++        set net-device disable
++        set proposal des-md5 des-sha1
++        set comments "VPN: Site-DC1 (Created by VPN wizard)"
++        set wizard-type static-fortigate
++        set remote-gw 192.168.122.137
++        set psksecret ENC hYwOLhSwXQmG/faBhJay8KOpHBzmKOVsUqA19elxOhW59tyiBNvAm18nHClNOKqpwKVmwTARorgR2XSsJ1MeYwOmIXXEE8CvGGdzPshqrNzmJU1q5yKs0LZZ21SSD3W8q8WdxeH6+kt0+z0ceLPnP3BMA+CjndthndSLJKEMCqrpjYFjMfWZQv8TfCmCPZqTQHfWxw==
++    next
++end
++config vpn ipsec phase2-interface
++    edit "Site-DC2"
++        set phase1name "Site-DC2"
++        set proposal des-md5 des-sha1
++        set comments "VPN: Site-DC2 (Created by VPN wizard)"
++        set src-addr-type name
++        set dst-addr-type name
++        set src-name "Site-DC2_local"
++        set dst-name "Site-DC2_remote"
++    next
++    edit "Site-DC1"
++        set phase1name "Site-DC1"
++        set proposal des-md5 des-sha1
++        set comments "VPN: Site-DC1 (Created by VPN wizard)"
++        set src-addr-type name
++        set dst-addr-type name
++        set src-name "Site-DC1_local_subnet_1"
++        set dst-name "Site-DC1_remote_subnet_1"
++    next
++end
+ config vpn ocvpn
+ end
+ config dnsfilter profile
+... skipped 1230 lines ...
+     next
+ end
+ config system sdwan
++    set status enable
+     config zone
+         edit "virtual-wan-link"
+         next
++        edit "WAN"
++        next
+     end
++    config members
++        edit 1
++            set interface "port4"
++            set zone "WAN"
++        next
++    end
+     config health-check
+         edit "Default_DNS"
+             set system-dns enable
+... skipped 582 lines ...
+         end
+     next
+ end
++config firewall policy
++    edit 1
++        set name "Inside->Outside1"
++        set uuid 09854d64-dbef-51ed-7861-b4448e30fe00
++        set srcintf "port2"
++        set dstintf "port1"
++        set srcaddr "InsideLan"
++        set dstaddr "all"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++        set nat enable
++    next
++    edit 2
++        set name "Inside -> Outside 2"
++        set uuid 4b13cf62-dbef-51ed-250a-065dfa26e48b
++        set srcintf "port2"
++        set dstintf "port3"
++        set srcaddr "InsideLan"
++        set dstaddr "all"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++        set nat enable
++    next
++    edit 3
++        set name "VPN-Site-DC2"
++        set uuid deab4c82-dc5d-51ed-65de-945673d57642
++        set srcintf "port2"
++        set dstintf "Site-DC2"
++        set srcaddr "Site-DC2_local_subnet_1"
++        set dstaddr "Site-DC2_remote_subnet_1"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++    next
++    edit 4
++        set uuid ebf170a6-dc5d-51ed-5ec8-bb79b6a879b2
++        set srcintf "Site-DC2"
++        set dstintf "port2"
++        set srcaddr "Site-DC2_remote_subnet_1"
++        set dstaddr "Site-DC2_local_subnet_1"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++        set comments " (Copy of VPN-Site-DC2) (Reverse of VPN-Site-DC2)"
++    next
++    edit 5
++        set name "VPN DC1 -> Site"
++        set uuid b45ab314-dc7b-51ed-0369-45c4e9f3d9c6
++        set srcintf "port2"
++        set dstintf "Site-DC1"
++        set srcaddr "Site-DC1_local_subnet_1" "Site-DC1_local"
++        set dstaddr "Site-DC1_remote_subnet_1" "Site-DC1_remote"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++        set logtraffic all
++    next
++    edit 7
++        set uuid 7ba23a86-dc82-51ed-494b-99f66146a26e
++        set srcintf "Site-DC1"
++        set dstintf "port2"
++        set srcaddr "Site-DC1_remote_subnet_1"
++        set dstaddr "Site-DC1_local_subnet_1"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++        set logtraffic all
++        set comments " (Copy of VPN DC1 -> Site) (Reverse of VPN DC1 -> Site)"
++    next
++    edit 6
++        set name "Outside -> Inside"
++        set uuid c3e1039c-dc7b-51ed-7e8d-22a39bb0cded
++        set srcintf "port1"
++        set dstintf "port2"
++        set srcaddr "Site-DC1_remote_subnet_1"
++        set dstaddr "Site-DC1_local_subnet_1"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++        set logtraffic all
++        set comments " (Copy of VPN DC1 -> Site) (Reverse of VPN DC1 -> Site)"
++    next
++    edit 8
++        set name "Office 365 and email access"
++        set uuid be5621ec-deb9-51ed-2399-6e61234b6061
++        set srcintf "port1"
++        set dstintf "port2"
++        set srcaddr "Microsoft Office 365"
++        set dstaddr "Microsoft Office 365"
++        set action accept
++        set schedule "always"
++        set service "IMAP" "IMAPS" "POP3" "POP3S" "SMTP" "SMTPS" "HTTP" "HTTPS"
++        set utm-status enable
++        set ssl-ssh-profile "certificate-inspection"
++        set webfilter-profile "default"
++        set ips-sensor "protect_email_server"
++        set users "guest"
++        set nat enable
++    next
++    edit 9
++        set name "Remote Login for Senio Staff"
++        set uuid f431c008-def2-51ed-d941-733fa8b3163e
++        set srcintf "ssl.root"
++        set dstintf "port1"
++        set srcaddr "SSLVPN_TUNNEL_ADDR1"
++        set dstaddr "all"
++        set action accept
++        set schedule "always"
++        set service "ALL"
++        set groups "Guest-group"
++        set nat enable
++    next
++end
+ config firewall ssh local-key
+     edit "Fortinet_SSH_RSA2048"
+-        set password ENC fwAAAA3udRvDfBIgAXxYdK7DXuR08Ruy9bHbVRVpfb0aBoHNc8kpG0TL7M4fubCK7L2/q0GDJzsKKGxbaKgJoa/BRhW7FAuFx4uMIrL3D2fMRXLUrcenoOrqBJRW0DDDyVjDrLURYmGGAM4pUP9fdaIFsWT/GlZ8on5oAXUPwFStSoVI6HN6gXAZl1OE5wc0zsHGPw==
++        set password ENC fwAAAEYQyI5ppjgyYs7Dy/qHWmthJwKaQIdCEWGY224tImH44i5xi1rWU6P9+l0fiSnEoDTT9WxTuUIRuxE68WGyD24tswv12gh7vSwyAZz9OJwCbYBKAeyv/73CB0m/SVvfQ6/MWW8aSdk3/svu8IoAQ1pwOC+NGfO6TL4Gpz+SpLUshEDQ9aI68J06fXhjbpCSWQ==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABCn/oDqNw
+-a1uqLtDF5fXS4QAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQCpetvuHuwy
+-rT7alGJKw7HjYOAP+iyqNpVNYaVHGlxKtOrO8IP0CJ1XApMraaixTWsqSDgjta0lJZD8mw
+-rB9d+UooZl9rNjOhaZN3dnQ6HlCAN8IyzX1mBjK0mUvs570OYybNUny968/kcl6FSZSion
+-U4K/pGcxFUR5OfDrObufDOpVoNTZQNOdCfQcHWflyGQ50Fb4gxYaY9jV+0HccPcPxDJ6dP
+-7LyVwEXDY8ZnD+0ozfbm6Il5vmBNANQ2jnQjsdS6ZSPnAJZza/OEjdWmiinSTtUeF7dJ0x
+-PbSstJMhqNjuIfRsKIyd3bKemEJsZPDVYDR6BAA2yojtWkvj4VxZAAADwGblVy9TaBHuZe
+-2ts078Ztn0a5Wr8f5IrvON4NsSkEhWzoW7hdXC/9KRBk70NS69vZ4dBCbseuZRhLZzVWd4
+-7puhl/CXaqo+CMAT4eCODEt8zkse6kK24KIOzGmUAeyYxXEBlMUpe7uFjgc1Ci4nv6FDUb
+-wXNJBQm/FzNXr8pFssV9yt44i4bPmjwcUsJoOxDDKaGE4sgnfP990t5lWmZLoyX/a3r/R2
+-dHcqEKKY0pRZsjTo6hAUWhr6hgpjtNrDg4IqMaqvJhVdGSnU5NhqAOLb2BB5qdM79z/NOG
+-UzXou4+Quk39s0t1z9RZZIFx8Qk83mI4E7ccGC/C46LtxYf3XMhkVXF63uCk6NLFUlRz+e
+-BgPkP6xE5job4oi6d/MoAKDRKcZG9IOFNgb6TIG/eMg07fbacOrBuDbNxLFrLTLtikXzap
+-CO2DoDUWnkNui8AyKo5pSl6Z67zFNfhkoWmeXr/arQOBrUR21OMSyn0Dw8qQv2bvnrJ+gZ
+-2KSQgu8IgLl4Q8762vFde3owG9UeiJuJiEChEhVE+NaRcX7TOmI65ue3Skvk7plbCasyNL
+-B75sUNNold3liY+PyluK1mD1ijwTyYzagjgiAlgMY8DqI2vcMLzUUKwvw8oV5mWk/zVUd9
+-6bd8d4yi+vh0AFX+Ul4UN+1DHpV7PpryYRo89VpDeJnIOdwTTmIa84KY2YtIv3Ofqvn2FF
+-YlJLV5NW7VumSSG2P4AnWId5hBlBWJb9sRE/6QajgF6CBePuWvQcGbX1DwChyv/pA2Dg6Y
+-ftpvhBHcN0WHGnt5iN9HezNDjTVubLacwNBC5/9B6LnV7r13HRThyvFpxBRYL/VSdO8CIQ
+-sQWxwfKB0nfWDdT/DtJisxj996menItMqOsRDTk5Uh/3BvxSX5RRUmYfe3DK+fXOaie4Wz
+-Wt7QXC13Fv5+w3aX1rOQW4ePYizle/Iy8Ahnu+F3Y580gbP8nqJAHGrr6H4JINXJ309Q5x
+-FEML4pA+8iTzA9P8nGzQVXVxTX16v8u/yArEtWoiRG6HwZcKONJSCDASR62MqQ8eb1hykz
+-VjZeig3SkJVGXh+TJqMGbFDlpz/Dbk+MVUP2RGY93XO/8bAuqtxY5qADKpG23294YtEldx
+-1BZjC12SWGKo/z4XwOsMQLe9yBjLhrRjU0aiag1dkA5QdS/JnborpKISZhdw/Hw5gGcXtq
+-N9n3Ki+Y9ar5a4xN2ss4BN+cY6Px6DixI5h548vbnq/oY83/9vwKtgw2reaa96GdK/3kpT
+-ri4ST8nQ==
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBPQAmKl9
++Qr2OEoD1QSDBuMAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQC+PDHxEhuh
++qo9fVKxoM5RFEIqNTblDHeaRH2ij0192Ee0AXLzz5vjjIiTERpZdJQfvZMydUHWSkyuQ+7
+++KGf9zpMHD2kHuuIU5FsPE2mvIVYbaGlNQAan4sdF/pyLPBkv3EwnWSvsffol5ovo45puI
++RytGc0zhJU1aNpoJjnmCTr77INEiM+uquUvnA3IyvQpLVL1Hwi7VJen2fD9OMWnO/twPQw
++xLlmkIsFzCdcYPUxFlTGqAn8ymP3DdgrbPV29I5rlye1DNbzJIvajwCPGY7BXHmgo3zigm
++ckeTNE69nmYzpmne6kwJbwcsQZQij2N23EWAqI8cHw5cvSHLJJchAAADwMghRHxzhBgWUy
++UbZOidK3+r3IRpdr73ZRDzgYIe93pXY8CK4PgWEwe45I1113J/SilNINSlqqCJ4Q+sTkdq
++U0+8R3dPJsVnTLp4XwAVP5PhUFlR7SZg/82fjkSMbkmYt7JlX5U+IciOXuMXpyxZ5Cj1Pm
++J4OEhXKHsxgVOHzYOJFKnJn+E7cqviuZX0RXgEr9hl5NQ5YnCqb2MMHL1ikUJkVmy/q/h7
+++oDuSinmxzzSUcNteu9jL4pHwD8HT8eejIfp7gaFNTJ4u8IYWabMehTQj85zYM10toHgY7
++TLYLLxRUVNs7V6suyytmOlwOrhyyC+YDSd6ELyeZ4Lq4FBDAUvQB+AGmjZH4un7yfWgSFU
++a/wB4mt4YjjLbsztmADYPo0vF7h/NYKCufyZ6dHulTJV0viggPFt31u/ZFw35InclIXtdu
++fcrtcE+I9jI/8oK3o/KgvUzhtsY/OZM23zss0dNW0PYYit3tHcnXg7Faw10ln2FLDyowGa
++kLd1RVxLQw3tW1otQZAxo+ZJXTbp00liLnZ9hP4xX4/fHRCQn55FnfhYK+JsaNwVp3qT6J
++CMLAxb8YzXGGg55JjhwpY8Dm9vIdJMeRcCYDiLALUqPQ3Zl1bWyZR/MnlJEWbFLdrNad3p
++ldsXgp714PQvTkyyEKSgv5G/s7WekKA62UyNqI96VVFrSHnZuMFNzm4ik3P00kHeyTCca7
++UGHnJJQ3eGzb/kJsxZ/ulNZvld0Fzi9/polJbDOketvprR2FXZtMNNXCrxQNtvpj1L/jSW
++zAAxKCu2gfq5Jn2NijXcvA5bz8cIcKK29V3b9IqE+aVb7QvN0isKVikpPatmkJbSjE06cz
++KCFaisKimCgAUkjJvzgn6254QxBYQ/uutHUlAAjozpT4LlBgvtO1cgjV64Yep+R4nksizM
++du8QiXbeSgFtIAb51YdtX5NjGK8b99JnW1UH/E3P5BjE2R4BS0TTGPXag+/ZPrfvuCQ8lD
++PYXWOxNJIrI3W9NzWbNIBQQAcUM28Rr6wBRbxQCw5lvrOxZFF37IuidxhhOjVKR3q96RdP
++ximjYJRWS/vKjWAN2zNyZU2jLNZakEIn8Qvv/3eh6Cx8VwAE+pYDIZ4FiNUMV2+3W+Ftue
++NN9t+n4KGpISq1idb21A381YKhXK87S7ddF9enqtpVZ8MtkHPJD/eNBWFNJzhJWPABdmZa
++QDbdTFRt7VlrQZWx/VS86wM/m/NVpYgbmbGkexQuWRa4l7J1l5vtPHpTBks+9eVrD8PEwp
++rDby4dPQ==
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpetvuHuwyrT7alGJKw7HjYOAP+iyqNpVNYaVHGlxKtOrO8IP0CJ1XApMraaixTWsqSDgjta0lJZD8mwrB9d+UooZl9rNjOhaZN3dnQ6HlCAN8IyzX1mBjK0mUvs570OYybNUny968/kcl6FSZSionU4K/pGcxFUR5OfDrObufDOpVoNTZQNOdCfQcHWflyGQ50Fb4gxYaY9jV+0HccPcPxDJ6dP7LyVwEXDY8ZnD+0ozfbm6Il5vmBNANQ2jnQjsdS6ZSPnAJZza/OEjdWmiinSTtUeF7dJ0xPbSstJMhqNjuIfRsKIyd3bKemEJsZPDVYDR6BAA2yojtWkvj4VxZ"
++        set public-key "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+PDHxEhuhqo9fVKxoM5RFEIqNTblDHeaRH2ij0192Ee0AXLzz5vjjIiTERpZdJQfvZMydUHWSkyuQ+7+KGf9zpMHD2kHuuIU5FsPE2mvIVYbaGlNQAan4sdF/pyLPBkv3EwnWSvsffol5ovo45puIRytGc0zhJU1aNpoJjnmCTr77INEiM+uquUvnA3IyvQpLVL1Hwi7VJen2fD9OMWnO/twPQwxLlmkIsFzCdcYPUxFlTGqAn8ymP3DdgrbPV29I5rlye1DNbzJIvajwCPGY7BXHmgo3zigmckeTNE69nmYzpmne6kwJbwcsQZQij2N23EWAqI8cHw5cvSHLJJch"
+         set source built-in
+     next
+     edit "Fortinet_SSH_DSA1024"
+-        set password ENC fwAAAAfEdUT+1vqyW5anC8FmRQxjBuTgYGWd3uGzytdtfp85iLSWXegyO/mAz8hvYS77EPD3ebIkY12jXO1uqUzUJycrLEL9ypHxFuBN/lwu8mif8ZHi9Z+H7PsvT8c1zBw3kLlnDSIUWt+ZK/1AvplCZHKUp8KiZj5Hs/NZfjP1ApKqv52UlsAWdp9JlZ9QQ3rpew==
++        set password ENC fwAAAFlTYZPBMVTx2/2xTPZbucPaczLcJvHuELluact8mBDz3YIkG8/ml0S1gavtrSKGIzBVHoxtQ4wBuUrQN8rT4cLX2Qcl5CHY9E76XwZWPgUYYqi3TU3rY028Wxeh6p9PR+wfjzZ5i5JOOvwD7OF+sg5C0XuX6eUP0tJ5BSWRazQGbveD4m4TLXMnaKuH0C/0mQ==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABDq1XIdHd
+-kTlHwXAEw2hztrAAAAEAAAAAEAAAGyAAAAB3NzaC1kc3MAAACBAPWdz4+/YKTOhmiGpyjH
+-aC3rBfve+vzxbWvDz3+wbyf9BjkBQEsLpMuLAtoFdRqlmz2SCJcPMZjrI7cQGg3BItp8zl
+-T4H1Wjk5p39gjU5T8iK0fsjAVRgtOWRnzesWiqwHoozLMaRYUTYbBPosqgyCqdzpbI9NzE
+-ngrkAF4Af+lpAAAAFQD3g6TDO0gmG/gYkV9g/xqBZMh4mQAAAIA4gltpBRJDRjZs+6ZBNX
+-d4An6y20zoT4kbiM2nd6PdOxfqMc4FXcZjNOkQnoctCYhlialGwLqgqzmTGSVyA86ygXey
+-IgVuZwwqST2dqDEjeJlcyJlWbAtobiuG85D1nvK6mjCKkMgPr2+xL/gn3jE9felCqp62U/
+-p+W3tAASTmogAAAIEA3ADM4FlEVmqBeDecf9HBxoUhuxAagBicv9Y+aPkQWuC4iimNNcRA
+-N486FE7GIDV8q0MNB7H5uAUeihxZ+0g6po6ITLniruMErbPNnHlat7uNq8lR6zQ8HO8XP1
+-mXUDCiDAwlYVY3G3FpvWxkoR17VeNZk3PkoriP+OVVR7R5pyMAAAHgYxM9B2x6iHvR6LmV
+-zZuMc0dsmZXlTdVJiIORsjvY+ZaDrfkRXRTGk6fA9Gx9XPRhfWT62x8T1Q1l3g5Xu4KvM0
+-V4ToKUBqrNd+sKKnaEcHjZn/KyRBiaEe0QtYtTkKJ13lJ5ruqwPSB8KRFcrzSMOrpfO44i
+-+F5q+nGLghxBVohdH+mgygZ50Vq2dJj15ooaRKjidMmP8gljTctUIUeIbjmIpjkHKt9PpG
+-cJGs44+TKWnBZApPMi3u/6PSKG93q7sxMM7pH3fVYMLBC2lF7sNPH1XDz1l5cQxq1Lk6UO
+-IjSiimMIN5AXymfE4pQ1sL7IZwNymGEBprX00niXtRheF7e+TOSf7ogcDZ9zQs09/amzhH
+-LWeB7yxlTWcoY2mWJmPl/N1ogLMvJz5lxvuEkyWeq7g5crp3G8R/yKkPN25qg5seiE6gYM
+-BanZEGguz7P6G0pg2OvHgYRgFCHO5dSkt5c3AfaBsuxFje4kJ+80ewmFmNr1yJIiRnPP6X
+-gGMj+f98CbpKnj0dDPcLCzmHag12MBvcZTeKTHrsaC0F3asez9Q+J9ltHY3MTwNV25kIvu
+-K1nUZCadpOHVEvFog3h/sTGBry15IgHrQCLvDfpT3rUBfL+1yoDTyn61SJzAIHQV
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABCoBhD3r/
++KVBn4TxxGWWo38AAAAEAAAAAEAAAGxAAAAB3NzaC1kc3MAAACBAOfrJAJKy1mJQFS/wPkL
++QdTcr2XAPS51UCKpC+ESp7x3fenHyLF9IIB3M7DQ5Gl4TJdr3TIC2+zn9Jy4wda4M6SVF5
++w/yEmVeXoeb1r76xRABRUi8dmFsXjmfjPYIvvIWwWsOolbxD5ZiJURltSVidUdhnsWcoHq
+++JwYxF8EeULrAAAAFQDiTZiniEHwBRlgEoOx6bL/vG401wAAAIBTcTqFOtbD2bO4CmojkW
++66qyXMU7HGwQ4lj+/0l5Hls2OMbFVf/khYIoSvddPxmXUp/HlhbBKXwukCLvfSAitvk4Pc
++hioV6Olw88tfNsd4GQYkkecX+Y6iVbwUVbRqjynHwjhM6SHnCeRT2RrPdHP0EL4E39gZox
++XxOIeZiIoKSAAAAIAdAlFnf2eZz+L6HUNsWT+QMUXiilZmLaan1woB6H4219dykdw5xGG5
++UX3qaCPzq0RL6z1kb+MMiZcI8Z59VNilI9Ipw3K38k8R1FhU2JXrQfvRIWYr84E0zvIpsm
++r3LH/+YKOGUyEctPccBeM3qDpa2CDwYbsw+AQviN1sTiK4NgAAAeCPY7h3M4pgAhncN7d6
++0RzwW6lCzyjWmQ1osaSoEirR5z+KSG3fU6i/jCiKzc7YaUPZUCwpbjIObJnVFBY0bE5Cq1
++GW9l4K1kZQiKjVhKRq5uNkzoHxfGoidR5L+P/R9xlqsd3IqrVSCbxA+jn48hxshGN8oJwf
++oJGwHuXRtPd3bR+kV9NQoEmwy/AAPTp+9hQOKU3Nz4PnsRfx8qOsJfqSGCPGJ6KOLBDMYs
++yW1KwywlNp2/0MqgLhlDfvO02nOkhVXn5SnQOof8If8qnMfgl7+vqNu/m+yzC0+DESwi7o
++Oq9kKyTW5EyoeNyi9eoQswF9jC2R6hwJ1nUqCSgn9q+G+voMbGDkvR0VMk1/AWzbOobTbd
++WFTTv+elgUg28BFZw22HYB78GFfXbGL9XT68xJzG/dP0VenLLDUZHJkJvsj2zgkpoQ2ms3
++Lmm331L/sW6lzYSem6MOhZjjz1vDGzZcHJMG5V0dhl56czwOoEG8xQMNAk5PRmIUwKRa8C
++R8tSYOACwMVnOTCiENM5xzWimtospOuPl0h42W6HHtuI34iNvFpOYUKVWg/zmTkYYmi0Un
++x+pCJHaPmpKOFhVefzODEUCiGG3x8x1IfoW4WdXsrISbGZLWlry7B4/wtUOS7Jw=
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ssh-dss AAAAB3NzaC1kc3MAAACBAPWdz4+/YKTOhmiGpyjHaC3rBfve+vzxbWvDz3+wbyf9BjkBQEsLpMuLAtoFdRqlmz2SCJcPMZjrI7cQGg3BItp8zlT4H1Wjk5p39gjU5T8iK0fsjAVRgtOWRnzesWiqwHoozLMaRYUTYbBPosqgyCqdzpbI9NzEngrkAF4Af+lpAAAAFQD3g6TDO0gmG/gYkV9g/xqBZMh4mQAAAIA4gltpBRJDRjZs+6ZBNXd4An6y20zoT4kbiM2nd6PdOxfqMc4FXcZjNOkQnoctCYhlialGwLqgqzmTGSVyA86ygXeyIgVuZwwqST2dqDEjeJlcyJlWbAtobiuG85D1nvK6mjCKkMgPr2+xL/gn3jE9felCqp62U/p+W3tAASTmogAAAIEA3ADM4FlEVmqBeDecf9HBxoUhuxAagBicv9Y+aPkQWuC4iimNNcRAN486FE7GIDV8q0MNB7H5uAUeihxZ+0g6po6ITLniruMErbPNnHlat7uNq8lR6zQ8HO8XP1mXUDCiDAwlYVY3G3FpvWxkoR17VeNZk3PkoriP+OVVR7R5pyM="
++        set public-key "ssh-dss AAAAB3NzaC1kc3MAAACBAOfrJAJKy1mJQFS/wPkLQdTcr2XAPS51UCKpC+ESp7x3fenHyLF9IIB3M7DQ5Gl4TJdr3TIC2+zn9Jy4wda4M6SVF5w/yEmVeXoeb1r76xRABRUi8dmFsXjmfjPYIvvIWwWsOolbxD5ZiJURltSVidUdhnsWcoHq+JwYxF8EeULrAAAAFQDiTZiniEHwBRlgEoOx6bL/vG401wAAAIBTcTqFOtbD2bO4CmojkW66qyXMU7HGwQ4lj+/0l5Hls2OMbFVf/khYIoSvddPxmXUp/HlhbBKXwukCLvfSAitvk4PchioV6Olw88tfNsd4GQYkkecX+Y6iVbwUVbRqjynHwjhM6SHnCeRT2RrPdHP0EL4E39gZoxXxOIeZiIoKSAAAAIAdAlFnf2eZz+L6HUNsWT+QMUXiilZmLaan1woB6H4219dykdw5xGG5UX3qaCPzq0RL6z1kb+MMiZcI8Z59VNilI9Ipw3K38k8R1FhU2JXrQfvRIWYr84E0zvIpsmr3LH/+YKOGUyEctPccBeM3qDpa2CDwYbsw+AQviN1sTiK4Ng=="
+         set source built-in
+     next
+     edit "Fortinet_SSH_ECDSA256"
+-        set password ENC fwAAAHCgGEPXf9nlMWhymyoc7z0Fi0GfxBmDv18VLgvyDgqb5qO+CPzA6YVOTi1vMqB5y+9aTMggFVn0p7DAdknQr2wTdu6KN9fuHs3xJEPqST22i/js9jx5JvbHya/CIhk1zw+QHNDxVLeXdwZkwMB3fEmg3DtSfsgXKCOgfF8CvjDE9mIKE5Y4noKKwXBrYpzdDw==
++        set password ENC fwAAAJ7iW7Bzmr+BmxYI6wkcIwaXmfgjaLpNnhkhH03NsI10mUGqPBT0kr5IyHcPM+F0KuWl7D2L+HyQ2lc5vePFZ1i9dbKIXSQsn9DnpviWeoFao+EBu1qOBAXQXyBjR2XU46eHjqVhg3zJNCG7z6e4RNJkXwZ4A0WuYC7jrQESy/hBDggMm0+rEdRLqZZOeHmk1Q==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBHHwbkfI
+-4s++JZjI5UF/c1AAAAEAAAAAEAAABoAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlz
+-dHAyNTYAAABBBMCDHULMajmF95tnwSpjqSSC7/qXYBUyHkt0FgI03Iw5zH4m/cU6gbf/vk
+-vjf+mymDMQWNTyX80Hvxnh8EPehzcAAACg4uNsM6nYoJ9ds+uUTBpdjCCtOGvA9XDZ2TyU
+-lA4l05JLFAVdtF3005B5OMouNtKuK0oF5eZ6YJY0Y30Y4lSZggCnmQedRtXxqMhqxjjjh6
+-I26P6viYBw8gOrQd6g1V4gHpVFGUl1or2SN7/z+GgCKY8bebh9VUhR3EqrYpxANbILB0yd
+-3b1rfKcRV9yTZBmFiyASPgmoA6o2WOHrfK3CbA==
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABDqJPCyeL
++ikj/4OIqQAxRDKAAAAEAAAAAEAAABoAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlz
++dHAyNTYAAABBBOBYhuyl12MSte/riGk8yHlJ5zRnEOeATpBTdQQBPLEXg+abm4IJOTQe1L
++7xwF++/CSTU6myi9O+vK0agXwxUyoAAACggdMZO952ZhqU1s5c7Whu/y368UAv9za2WPGP
+++1z9lR/dSXMahsDm9k+uVXjq8vQOXixeUPU7s5SYBuQAlO0po1olhnfEcCKZby3SPODELs
++zxeBhaclrj1+86wycYT0lIv66bViIQ+GQRMESfCjywGZZL5mjnI1hNnh4UCD4SV95gaJrX
++s7yanUHzCfQt8kHRSbUrHwu01ElWpYzWcpy4pw==
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMCDHULMajmF95tnwSpjqSSC7/qXYBUyHkt0FgI03Iw5zH4m/cU6gbf/vkvjf+mymDMQWNTyX80Hvxnh8EPehzc="
++        set public-key "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOBYhuyl12MSte/riGk8yHlJ5zRnEOeATpBTdQQBPLEXg+abm4IJOTQe1L7xwF++/CSTU6myi9O+vK0agXwxUyo="
+         set source built-in
+     next
+     edit "Fortinet_SSH_ECDSA384"
+-        set password ENC fwAAAN4AQLYwVCcDtHqN+63+kkPBgMmR9M4S3ExwHc2QVJ5MgWHuaYgVs7z6QbsPQPF82IlSiIGdoBeV3LPFghcAGRe7uessRH23NzEZ6H+Kx4LukyzWA5ORGRzYufoK2wh8GroJ+dP/ACbl+9Qs3TATIMfVPad1zAZKpn5nusCp6ODfJcitImU5HnR7lQtRYQ2Maw==
++        set password ENC fwAAAGA2UN0vd8dtrEJWdkvcfHeUiW8UoNY2QaWtmAJfOWHeSqW+XqpSphzFNxZFH2n06Td/Kmw3Nvc2F4EWBYPWzqATFOKrBkUgX1PK/FrxvaHls5/Th9agTzGTsVdia0ZddzXpjHt9AuSqOSYuCWkA1CmPsZoKDKhUfeekAfqZdcfbaDH32MwCu6DQnEVBiwJxbw==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBWY+h5yp
+-/0sih7V3Y6XNceAAAAEAAAAAEAAACIAAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlz
+-dHAzODQAAABhBCNf+aK5G42guFPY5LM+QrBt2QMsqHYo54XB84dm5IpMxvq8Lm3RxlR77/
+-aIDwDgLE9wU93361l6b1YDSwzR5Dkm4oQ3UFgPhVThsIDCX1ZoXR/p7G7Uf+muCIhUIfc9
+-swAAANDXurfv9c9RFwUCcVXD9LBQGNEJoj6nt8BHIxZVrP5jGctUQLSVMxblVh3gvftTVg
+-wSUKirkWXUTSAuQArR3Ykci3Aos8ZEgN/Q7eyHDntBL79JrpYQrMih5kGoNUnNG4pQCLxR
+-jy+CGpel+Gck9VvWn/RpZEKdd6bqwbmVYewtSWaR3k4MJh/gq9iPXrA+TaZiFaFFQBZulC
+-z8wmqNBmUgzTVtKGDACEDg6IHPODR9lt4Sd8PzjkqeJJ/U/GGc4c9vcTtYodRU6byfiK0+
+-Ty9h
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABD6NThfHb
++ShNrvLy3MFp+7KAAAAEAAAAAEAAACIAAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlz
++dHAzODQAAABhBEaLd+1uiYyAJDdMwiaI4Bjj+MmU0LcAzFv8MN9rgZ97wUmblH7Uouq6h4
++SaiYsuuFqWkcbbnOGNbYSqlXpIFNe7Om95WNQLtTKIOBAHnuDHSB96DtoIrpe9ErVDO17Q
++yQAAANBi6vVH95F7Y+OVEgSlvKkxIlPAilswj3r3CYkxtQArXW8XR9BrP77S8Pr5pCJohQ
++dR63t005h4pgc3pk3+orVkJUySGXOM05SzKZG+UtN0LFRrYhRuy7ylXE0FtzovkxCJLkHL
++mcMLbBlFJ9Yo/c0r21Ot5c4nEx1j/mL5GONZlMsmEnR+f1V3Ky4vd0t8l7uRAAN3TxhjgA
++GaPqki34laGbpw7tzvMp+HK5WVO2az96EjS/ekHW1v5o3syUU3bm3Wzw6bXW+dh61vbca6
++mse7
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBCNf+aK5G42guFPY5LM+QrBt2QMsqHYo54XB84dm5IpMxvq8Lm3RxlR77/aIDwDgLE9wU93361l6b1YDSwzR5Dkm4oQ3UFgPhVThsIDCX1ZoXR/p7G7Uf+muCIhUIfc9sw=="
++        set public-key "ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBEaLd+1uiYyAJDdMwiaI4Bjj+MmU0LcAzFv8MN9rgZ97wUmblH7Uouq6h4SaiYsuuFqWkcbbnOGNbYSqlXpIFNe7Om95WNQLtTKIOBAHnuDHSB96DtoIrpe9ErVDO17QyQ=="
+         set source built-in
+     next
+     edit "Fortinet_SSH_ECDSA521"
+-        set password ENC fwAAABz5auRUOquo4+nxBluwj1aZKS/0OZIvnuTPdbgdHijMVq5njRe/sRIaX/SR/b4wSj9eu9nE25WrkuBT+2lUqKuD09LjtzR2hu60oDCnYJN9kdMOHdpsXKq60maQJ54QX+cEQymYwuVc50rmJ6kX88G/c2X6IEIuZRfQyTrX+ibPjhqFTLHqV+YFH/1nRK4tJw==
++        set password ENC fwAAABTK6Kh8Rxpl42IpMR21HwPwr5RQSOwBEtYr2G74DvyUzYOTsRBeiz6ITV+YEUVUEk1hN0MVU1TrFnIK3djpxArwIjY4SZxrhR3yg9nbBPnNNFonliI3qsX8ZaNHQb90InmzcgAIxhkJMAF6yL5KIuWyUdf2mMpa71ThFjIFeDTLcI4G1yYiwXZnhadiTuu03w==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABD3glXHWX
+-QyKM4mPu408GhpAAAAEAAAAAEAAACsAAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlz
+-dHA1MjEAAACFBAGbDCAnOT57vDAs6QK0P4edek4H11DVsdJGRUxhTJtJMlpA4HJQCh4Lnl
+-ON1nL5keYaG+350ai+fCXtnKL/3/uoGQEAclyGPcZy9OxthV3c+W5szxvxZ4evHcQLi7a0
+-YwIkAILW1WnAory7d5dIP3Cq6YE4+sIJwXRzE/fAzVxbIVLXvAAAAQB1AfTGZ3IY2Hqszu
+-ZPPqsdd6yZzCne6zw46K77y3hJcJxnGajveIub7AFDPLj08GX2RazV0V3Gpo6igXeO+988
+-eaUPbniWE2BOeKSS4080XmOEX5PIabX1zKeE/B+FPSwK1xfLldQv20YYTu41JBxu8tkt3u
+-poP/wqWZNlr8VX9/HMnXIaYQBy22MKEpETbV0XLx5BjKjIpVqNzfwkEuVCGNMBAD4g+6eb
+-Ejwy1YVYuOCpM/PE8q58KfxcpfTYctJ6U8Xz7TCsWPGvSm9blvdauWh3EpWWuOy6ipuxqv
+-emirCjiZwW8nQ+M5P24TJtyTJE6IfPeySOhrBtRJSliykk
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBp/DcK8+
++7SfiYBLZZkBHIlAAAAEAAAAAEAAACsAAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlz
++dHA1MjEAAACFBAGjP3E0kXfOEseGH1PVIGy43CVdH8Vnc6P029cl44lcAcWjLtwCi8Um0Y
++/oG7o8rXHeuQAaY1jVZZDh7oKvK/WmuAEXX1zheC9KhaFk4bfCOu76l7nHojtQsO1gmQ/I
++E7nex97pQAV+5oNOv42DsCwCIIu8pGkrFvLxb7h7WToWr7xcPwAAAQDfj2X4g/DLJqujrx
++5IaAFSCMOQxPEHlpr9cXNr+FV/06ktDwBcNKpD4OMcHMV/76OYEVU9bcLN7MO7ZhLgr1/X
++AMX9wUWUdfRNW6c2+IYzfpRs4wx9hzK29DPP5+8MT+/BrV1MKD4BZl0SFA5NT+4okxcCkD
++C+mZqW2L+jOEp7ihIZiLmPPZMskFmPHbeanLtQ1bdYeqXbt157eQJW/gqnC95EL7ng5yG5
++K4Dm9LJo8THeZQo9nNhSJUUHayU4J2G2phB9xHHYIEHjt4xU4fYItC5NV6661s74WTeriY
++Tl3h8JzQyK0AVuXWyGke2X9fOqfCCZ/OQvgsa+mdCC11t2
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAGbDCAnOT57vDAs6QK0P4edek4H11DVsdJGRUxhTJtJMlpA4HJQCh4LnlON1nL5keYaG+350ai+fCXtnKL/3/uoGQEAclyGPcZy9OxthV3c+W5szxvxZ4evHcQLi7a0YwIkAILW1WnAory7d5dIP3Cq6YE4+sIJwXRzE/fAzVxbIVLXvA=="
++        set public-key "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAGjP3E0kXfOEseGH1PVIGy43CVdH8Vnc6P029cl44lcAcWjLtwCi8Um0Y/oG7o8rXHeuQAaY1jVZZDh7oKvK/WmuAEXX1zheC9KhaFk4bfCOu76l7nHojtQsO1gmQ/IE7nex97pQAV+5oNOv42DsCwCIIu8pGkrFvLxb7h7WToWr7xcPw=="
+         set source built-in
+     next
+     edit "Fortinet_SSH_ED25519"
+-        set password ENC W95F60hrxryJzdpsnjs4b0wPAcrDbJfeTNtuvlPiTfHHGXnvq1F3ES0F8Jzg9G7Lrp+xRSUKTY8oBRy3N1Vm8YqDOy4qk/Eu+m/Ee0itZKi/WiUsJGuQ6EUICYDV3c7p0tkE7MIxSOO8EErlvFbSs6NdxVgha7V2aEmAvEYvPM5IFAu9SSgeasJRAcqXbz43seQ+lQ==
++        set password ENC 3Ntjgzuh/kEh5pzS91hYPVV0wOvj+C0IX3GLRdhL5PkM2OAvw7JgQqPh+KBJSF7IWdV332oX9SmD5MlnUcHPv9+CFwp+YSc62Y+7rzvIlFB7pmh9uHCHl0w0oRgtFDqAjUPSsRusQ7wpmGlWPlI5/MvymEKGXeh/kqBbq9AQ20PkEjOrKMhGpZBeF0PTmdxoVLXqvQ==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABC5Zh1t36
+-7T3f6dVim3QxHZAAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIIbhHWCHKFuVGUyb
+-tpR+PU3lUBUDHdsKaT/lzUVYH2cKAAAAkEp5VfZn+Wqp4+WYPxXEhK5SnIjnxQq0vxOhAh
+-N7+JSHkY0OpDEecCaizW2Zz5vX9fN4LuQfPWMxE2oJO0GmBk3Lq4QoAnWgAShEuDMjRPHK
+-ZKBWAqa5mWUCWfcoPo8wc5AYuahw03ynmhDph2S0bAz4Em9sNO4feC0mUlYHG583sH3bTt
+-HwWjhHFdADYBtDzw==
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABB+U9sq91
++0XthRi7EPfHwh3AAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIAjZqxktc987gWca
++HGTiVdjPu7rzi7Srx7LKtQ8lnw7PAAAAkF/Ttt+/vPIETKYchel+JETYhERCOYj9pkpAGs
++FdMVTtYRX8u3ZQ/vUcGKwwJSZeoC7kTbwvDyUHog2F/V9xbwqDvyPsToCHmHvWILkn1Imj
++M5gY9sSD2VZ3WJrOMDboHkKPTKmKDhYZseCb7SoilS20IqGJfqsNcwmH2gYR7/964X4usK
++DG+4jyxfQyv2cMcA==
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIbhHWCHKFuVGUybtpR+PU3lUBUDHdsKaT/lzUVYH2cK"
++        set public-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAjZqxktc987gWcaHGTiVdjPu7rzi7Srx7LKtQ8lnw7P"
+         set source built-in
+     next
+ end
+ config firewall ssh local-ca
+     edit "Fortinet_SSH_CA"
+-        set password ENC AAAAgTb8L3tKi1vXbB7tajyVITaJQTCIndEq5d8Qhu0TCx8aoz39AScxyhfzHDRN21d9rc09cEkWy9qA0TBRY4j33+NlUDUm51vcZU9C7COLuw+Mt61lOB4bxDvYMm6zSvggb5cTj1kVx2qnsNe7r2HuAriQdAPXxPNQjbBPADNI8978M6cqhaPepQCIEngIXtuqiQ==
++        set password ENC AAAAgSNVYIRzkV3653syQcmoJ8vvJXOnWppb+ns5K2Zy8NRlbez0UEVtObEcr/H3RKazKmdnM63qMMqVeEzXAsY3XARDobGMfj7F/piTLPiEjTMNdphjLPpvAYq+h5Aa5qyL3+QqTdWGUVj7AkCDGoV521HpWl3FyufGdeA1S4rPvfb1gffqYCuapFRl2kknvGuXtg==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABDN1rxSeI
+-9tP7YlYZeOFBqsAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQDGvMpdMkc0
+-0xGyFf0OAIJfLiVIFPC0H5On3K0i7PhVa/sI5UmNisVrHhv2ywIQfNr3gKXyDHY3hNRCJQ
+-Cej1B4Nk1HX7XKLxpuMEd587du/usGasXx8j2syWkClapACBCaf0+X14vpJeFgHWp2BxUd
+-UVWaX4upt0ZSm0Tb8xAwt4BpEqzCkMF8WTL83rG3virosZV68FiiXlH4dZ3I41nNFYyflT
+-JU5Ztv/nHTwAnD6fO5jPtijADxpWloGbZLRMYv0LbGaMQ3+D6a1tvphP4C9qp+LyFOxiGp
+-3H3YY1uNey42BFcbDgb4+JGSNXn4jIDXAl4HnyAi0ZS8jBEHqAJ1AAADwGKnwRLCwTUCbm
+-dotP1kr0J/nHzKrtVu4J1VcDUfng91CP4hCsbWu4ZtAJwdB2Gi4OPvrPFtIgfl285rgxrY
+-nz25tblsvsUokRWtJ/cY8DYJ+jPN8C/Qe7VN0ifk3Fjf5uNj/zHREtcBZCM3UbiRbZzUiN
+-7xprxoJ7NrlDwCL1nDQAa1DLxcJ2/BWKxN3OHyGv30TrX/6zb8g+brto9D5EKtefa3ALh3
+-0vtT0Kf91/bNmwnfsa2wg5sWXYFl3k0Qx4MaWHbT/ExFeO1RsF1T1pc1snyJixxhixx08L
+-idgGkL7/bCrfI/+pysrBja3EuQkiqVpP9asy40YNnR02ORlScQiEH+EG4npDQRllPmyfAp
+-GNhOz/m+b8PVjGkL87/5benIZUO86THWX1+CoFC6ysa3Z7R2R540duCvvtrt/rTJ9jEmyN
+-Sx7ZU35PueL7m6+7qhvih0c42fM1x6c6K3lbhS3IrOGxK/JNwHP7RvPQGsOnbvMQEg5tFT
+-YKHHeoqyNidKNyjeuuRslCwGUt4+Io9FJJEFexYR0HjcJj+MZLMyYHDZuA7XC6qvPdMGRI
+-LnA5Nv/kEt+PXdnKtnJPNOhZhoC/0PLV1cLAWW1uMrT7RuyXGUQ1P0idJtAKd5qLil/5WS
+-14iid82yR2DD+KHqRzjuu2c51e+OvmHJxub6cuGJbnPFYX8zHmb+fi8YSql4ZUCw/iHvCY
+-ovKZANC2nKvHG9yLDMVO9Zax+SxxQRA1eDsLxsKpvANKfZZdRrvpZNxooPD02dx7WVeEnp
+-OBi7guCDjpBwZOO8Q0X0p89aUTbhhkmEEMSUcZ/0WpQgAW4K71DFOoBRaMQ+7pwcmwdkd2
+-vKYV7FqOI8+n/NthI4637gHePRF4WtGnMawOcVTd8M3uaPBqZVksWuBdx/LarFPHjWJEM6
+-E4AjXoT8ebZLGxwgJvJOl/tObvjYvBrZRhRFZBjX4lF3X54252jxxFEgEFGPHAV7zESKYD
+-BXkVggosjbBC4vFxhObvevnGBtqY5RGMywzq/yEhVeye0Z6rHE4jT+Tr86cB1oLkdwT2pJ
+-aqjlwx17F5FO336tr8Xue4jchS/piz1XC+70+cbqM1g5aqc8iUvWkh1Nged5v0LgDfH2nn
+-8asIiInI6hXbqmozoCKO/mwPKt2tHK+0uZn04oblJeoBsJgYeM1tE366rKt5ZQMieZvYfd
+-u+MNAU+KWnV0MCBx6AtGujtsl/Mjtrey3VDTwRJRqHM2AseOcFf9N8BxU0L1yGMPsypwZe
+-wbRH7oUw==
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABAkQKmZoi
++JLmE+b427gmZYhAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQDBsGe9WaX/
++QuxC1VuqKu/fxA3CpwsMcSzuYX7/yqZVOcColWto8RyT9NnSgpRroKnADH201b8a1U+FtK
++nnXaGUE2ig6gsFi2FCnwg5LiqpI8omw0fgi9/vv8z6gZOkIWimIFT46KGH2CDrNKTtmtN9
++S+SOuhzJZxInyqEXLjOKM9fzWBUTH/Vf6Sta1PiS0Y4HU3mx1z1rwCQ70Pfq/J2Kg0yOgb
++kWLpHFcN0okL+MQzo/rVQIZ7WEjXFJFrzX7V8nZVchs9I8EbFGehfXxJF2LEwDW3+v4d35
++b916EsOwXswE5Cs9SK8NUKNvHMOSb4bKqgoe0+XsWk1M/QAE9O+7AAADwEiuQV6lMFf+Z8
++hBEOEDz+Sn4InxPyVrTpRyLhEPSyO3ATd+BKvOwEkOiLsV4zBhZQ1qzEzI9fUPZa+g7jaC
++BY47ZEldxYCBMg46hQpUqvJohqQW8tEJGqToGZVfncYbEnwVt4oDMvy/PP4K2XyEL1akcG
++gXSRCgo3S5JBcmT9xbpV4P0njtK7gQa4XpitHWYeHJD7yb6KQbFbyvnIQV/91PCiVhwXT9
++Bg1gjPGO+tcaDYVp7TcdVlHd8sYfzAkz6smQvcAwxn1xMu2oLiEbsO85xfxt1pj8GaRizX
++1wIJQ7/7Rsi5fVnan2M7RdCd34KvhYqzJliDrlmAvc+d5iHjBzKlQEL2bKUMVKWjWeKrcB
++BwC8/B2rn+ycPQhwutNmbb/EuvcK8JQFcoDaHoTwGpVUoczmD+898oXizqlxNLfnZj8Cd5
++QW2C1pnOSKulGIngCYrB0vr0qzwtAtZ/ob9H1RjWQvN6YX3lZSRnNcWPia4hiWQ87fkN44
++W5CyfIRK1jcuQlXzUbNkSD15J2+iKvU1SJcttCFqDVKWXv52aWc69aLcybwnfR1BIjxeNr
++nDd9gNlOZNrHk8KLePNuToFjfZFYNh4CRWTf9o/eJ6+aghe3aaDV0tnzhyKncDG/pnmwH1
++y7vuhtsHWWgWoLyIJdgBjX+/CQx5cCLh8Rc7SJ7CuyvNCmYaeZoERUQJiNjiwORGI3R3K5
++7RbPJW2fWyc0vEKu9All9CNBWM8FWCI1WFqdjqPnBNYF/9PkIfV4PghtbMWd8ABoISv/a0
++IA6Q4AQ1z5XPuVWQVM0iX4e3WuWV+PmdPPnltx8ABuA/IW/8Ef9F4SAguafWom0mxZWEY8
++IoO3cUApQfkY8WIyT1t89C15I9qvkcjRrssUkQ0J8PCx4S+yboXoTlX24EuBe0w5MjBhyX
++QMO58iMmo6cVZzqNylITL7TwE0mYl92alMojMHkFQa+a6EMmie1kNEovGxmv0ayCxr3f1U
++vBfgsoVEan0FDWyIPM5nO8tBOiwftyHBcxRzEWw/5Qk/vUUrtP2V/ajxOKozIblGv60GTd
++aJ/lWvUNcJK52lMWCwOjndL7gStR0g39PWEdp4uvOzUuOE+NzQIjq67VbyorotHxVSnlVE
++TpSuSvtzPLWE4lK77CmMQJ7mrGzpdfkurAELELKx2lLeNN+NlYD7oRDXNDjiKOc1l8YSEO
++I/6ydOiIa0TjZHQTZPdO54svUGIuvjvRFDHpySW+QBEjtFpR66Vi1J/90Dx9NLQMxHk0jg
++Gnqn2jrQ==
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGvMpdMkc00xGyFf0OAIJfLiVIFPC0H5On3K0i7PhVa/sI5UmNisVrHhv2ywIQfNr3gKXyDHY3hNRCJQCej1B4Nk1HX7XKLxpuMEd587du/usGasXx8j2syWkClapACBCaf0+X14vpJeFgHWp2BxUdUVWaX4upt0ZSm0Tb8xAwt4BpEqzCkMF8WTL83rG3virosZV68FiiXlH4dZ3I41nNFYyflTJU5Ztv/nHTwAnD6fO5jPtijADxpWloGbZLRMYv0LbGaMQ3+D6a1tvphP4C9qp+LyFOxiGp3H3YY1uNey42BFcbDgb4+JGSNXn4jIDXAl4HnyAi0ZS8jBEHqAJ1"
++        set public-key "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBsGe9WaX/QuxC1VuqKu/fxA3CpwsMcSzuYX7/yqZVOcColWto8RyT9NnSgpRroKnADH201b8a1U+FtKnnXaGUE2ig6gsFi2FCnwg5LiqpI8omw0fgi9/vv8z6gZOkIWimIFT46KGH2CDrNKTtmtN9S+SOuhzJZxInyqEXLjOKM9fzWBUTH/Vf6Sta1PiS0Y4HU3mx1z1rwCQ70Pfq/J2Kg0yOgbkWLpHFcN0okL+MQzo/rVQIZ7WEjXFJFrzX7V8nZVchs9I8EbFGehfXxJF2LEwDW3+v4d35b916EsOwXswE5Cs9SK8NUKNvHMOSb4bKqgoe0+XsWk1M/QAE9O+7"
+         set source built-in
+     next
+     edit "Fortinet_SSH_CA_Untrusted"
+-        set password ENC AAAAgU8L0gInCufLcHjQ4PvgmIwdJwWD3YAJNzOQ90p/ug0jmfa8EN1kNO+nCONcXkPUOUmS5lkx+eYLERQTI7G3O3sUnPwVxDdepL4lqY6ncGtDrmyB0IUeWizJMa4a2pZxa8hgJT2c9VAOMdkzY0VZAqTeAw/26SwCKNDQNzxkoRYQE7xi753mB4wYp/jdgSYEng==
++        set password ENC AAAAgcA8C5zcm68m5yxCQsKlzpqOJme+8faocRMb0ZT2wlO8AHB0a+784zwMPBbGSrq4mjQX6p39wDiUOk57NmaTBW5+pSXKo26W7+BHmkQuHScgQlhKAkJC2ps5L3W+RvIwWdPY8D5ZMJmAMw8ZMUiuQ1FmpLAwXC4kH2Z4J5p6g6J9e7LSP9cwxsnCGPLTAHLILg==
+         set private-key "-----BEGIN OPENSSH PRIVATE KEY-----
+-b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABAYmf71s+
+-TDScFtVd7KXq+zAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQCryxcirk4O
+-xkHyPPyI5krcYQAMIp7yhBGL3hH+IBviAjg8ZP9zWCFoLa4TS+4lskvpn6B/6E2MoDA9qM
+-VnifuB6l+yvFf0DZZ1xpnuJu+r1H9ofPAIX0choVbKIrmgdEdCqRjPjB1S3DLL0ltv0+GM
+-+53G0oYVAc+qBCsWjruIxxP6lA2ohBNi+b4RCFSkZx7kEFWTiG6tVRuczpe3pOoCnWj3HC
+-APDfKo4MrGXCHhVQU011B+OT8OPp2FyHJ5+BN1B8T0wP7XPyDo50CsOL47gq8wKIlNgWlL
+-GYcEwWA63JnJoaZmBBniWj1a+C0aexJprUY821huuDQ0Nx69hxv3AAADwFO4eX+tGn2gZS
+-e3DgvUylIOex+PdsPPNVYhmYD4QSMQv38g3ru/D8u/dExUViIHf2UbNpiNbDHPPcb/CStV
+-OK42gChYrpZaU+iVuxyMz0der2KclDt119y96kPIwEwS/MpRhsXkbx6MjAGLTkb5fh/QDN
+-sHyuYgMbZobGBJW1dxgQJM3+G3mGOPM0ilbpX0Eyd4EJ3kObE2HpMt488jV1wrKD1yyxyz
+-BNc62c04J48QC6paOc5POxSpPKXnG4/6o3OVwx7Qq12QgKyFHeJ/1NzyXOqOz5rqhIWi4z
+-rTGhPg2/APxkC2Ruhl4ArDi1dCqg/1GnjP8apvxj1/lwxHx4maQiKtUhzeTsj7kvsV5+Bp
+-QiS69AOo0viqTxfOLZR1W06KpGz9w477RLVc/RdsGfGwmC38MXJXiPvtdD9QnOWEYR7Tgn
+-by+UtrwlMydkml+6JF+Q6ml5tlAVbiU6fmtBi7h8Y8PWlywUbSA6nsvwlEW16A4y4CNOUh
+-bCy3P/wvJJ7/dwcwhFIK+puocQbmZ2hDZZBASDLumF0dsIrcwtUcnHkrZasTqGsiC2qldk
+-8NgTIWVyodNwqy5PB0d6X4BSCNZb+FqT+Bwp1K976idKsmyeurjFyUz9ZyBSNBuVljyAdD
+-ctgxiTrkaxXs94vSupksJ3ZJqmhN00elcEHpEQlEmitYe+6obl8ZvoHsle243syNg4BuHG
+-ZAdCBJgZpn32PL85ehwmf9bcicstKpCHoa/pi3e+XnX/8VnLnAekJov9PvWWyyBbdvoRi8
+-dRmKs4NQjMoIbAw5EfXx4DjG2jT6vYRDzseEG0PZ0ADk2P2SaNB6Kpjb4XmacVALEaW8+m
+-O6uYOQ8IgEwAJuAck2LTNbXGL2hEXwPp3f72m+b1NKjY4IWBclqDAe1YT01xCK24E2LJC3
+-yn2R2Z4KO8TFw8prNnmUA3z9m5hwsOB+jw8hl2f4pGsZRIQdy2KujfgXbr6F74rNVgOQtY
+-IOuHWCTDEolAyqexItnaz//jeKG2ZTnp/YrhauFXOUt6TXPOW0dX7FIny3lwVkCHGb5wFm
+-GO666ykwRlvAEvgsqNU0RZol8xDTpyUq0TDJ49P0QR9KSRFx1PfYSgbdZmH0tSbJdHRAX5
+-JaM9gLAOtiEPkRQHEXUxdBoKvN/UerLso8dtPqAvlpRR59mqmeRLUJq9K50R/qWcXt/zBy
+-vzMheRYMsxFFT4r/k3UHYGXGHWYV7LT9Po3rEsTl9JT5P49GeVlRTvSd9aAWw4aA6NN10W
+-BgNybm7g==
++b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABB97ZTI8A
++/z71iuQNS1GhvrAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQDCPFoQpWSQ
++bdXz/icmL7ykRzjRojhK84SDcXDnijQhhhaGj697v8tu5/WJCgJ+EVj9cASFsNKRf9F5TV
++lCi9dA/vX9T8kNcEZdjoXyiazMutCU5TnCJeCnvxMVsYdwM5TpcKVvjnOJqNunthA989eZ
++MhZjDpF0JNs1p+ECkTDW51o1DNDgY30xZ3oYivyJiP12MZB4w/XjoXH8s/m7YVGPARCj3+
+++mB+YZdV1TidmUJXawS/rQ4glWo1iCW7oTH5smaL250iqDypl7r+dy3zwskFJXneb7f5ar
++ljBAoSvy0ZzqaAt1Aot4GuEiXRRpxOt3+y7j0FQrsyLZHeJ72QU5AAADwM3J7Bn2M3b9f6
++hB7gwNYSUWk8A5c3yUOLQusxDP1LVJyy5w6vknTB9T13EWXded4Hbq0OFekwvXMFLfuldZ
++az8a3MIEK2TjjVNgu9LDCptXNczCFZ20FDaVsc/CLegP2yz9dnqbKLFNRlySCdAkg1De2e
++vz16zoaBCueFlHj3oR0AUuP0iJfU79aGC+8MqrxQMU3JNL+aHfMVz0GHG3pGI8h2ZTHxhm
++q2Ya4osghgIIVVXa+lxomWx4P7+6k+dPGhuzoaBOmYIJaVjXZPYsAE6FcRlTpnTcXpmTyg
++phAHDSd223S9bC8uES6NjjXyctKSJB7eBoWau3oQU4dupnJ5Fmo/EDU2Pz2fyQkBotoSo0
++BMquMhm8Zco0ZZFWFQg6z2p2ylS9vvx/Sq0yZW78cKTuRgVb/YMXGbaPnKTeVh0Rtxqf7D
++81PROVU339BTAP3yJGsTOln11XynHHoyNsG1E5dXmdzCRFBb/Px5CpyPcFdo+kEu1A/8my
++99Js+7wQ+O5iRQ3JtUC68PkFXHSnOPvh1XnQ7dh9y7X9Zj6dyephjPU5c52JTZibgo31Yx
++WGDtWX2OO96F/oEz3lra6wpiYMjQh4pZBAGxXyJ3TdvrXu18oJiYUiJ/NGVeBiBCc0Nvui
++22xwbv0JEaZkQlhAOZoCOiPwK2tru5AYdX7DezlMZVK7eToQqqS5dtnf0lgdGM7B2sGtEI
++K95//AoXgj3FU6shellGSXcPYf9U7Yp6J1oZ9QaVzDFAk3WI4AVnnRoaog9yoj+ExadKRP
++ofMmrF2zsfaAwuGCp/L+Hg3OJwaCsJfVIZJq6H5XfEZUdOYgoU/ayElq+hW/SyNU3edNtc
++WTGkTAB7lzOV4nMHfJSm7gduRQ2OZW2UrorRl3IJ/0rurzQyy4yfBlVj1ZCdWsVYZCHbnX
++SreSILaj5vqybO7IWmcl3CsEyMCmEBf/UY+QRdNyXcXj3sP2qE5rTTOsZVdKhfDlAyJ+Zw
++BA2fmpPcrFP230JjTnVtVVnTInjsNfsAfL7F02hoBKBZVt8PDMLDCOd58e/fCwfD9tVHLP
++TcK8p325JzWYxV9qJaG7xSwIGpKeokEGPuvgIIgoXxh4HNPVxq5LfiwLVeMFReLtVqbJD9
++9iWL3vdhnxPnwCr+RjCGr2tFJrZ7E9zD9Qnc9sBpOudN7fCWki8MHTbXdP5+3I7vHhqGtW
++VRyXO7T1FoEMvIcuNombBG12YSKy9ylEunLnHc0SQAAGuLCC6jleGSY6FUsSZyYSTrfUNh
++lDYk0vJA==
+ -----END OPENSSH PRIVATE KEY-----
+ "
+-        set public-key "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCryxcirk4OxkHyPPyI5krcYQAMIp7yhBGL3hH+IBviAjg8ZP9zWCFoLa4TS+4lskvpn6B/6E2MoDA9qMVnifuB6l+yvFf0DZZ1xpnuJu+r1H9ofPAIX0choVbKIrmgdEdCqRjPjB1S3DLL0ltv0+GM+53G0oYVAc+qBCsWjruIxxP6lA2ohBNi+b4RCFSkZx7kEFWTiG6tVRuczpe3pOoCnWj3HCAPDfKo4MrGXCHhVQU011B+OT8OPp2FyHJ5+BN1B8T0wP7XPyDo50CsOL47gq8wKIlNgWlLGYcEwWA63JnJoaZmBBniWj1a+C0aexJprUY821huuDQ0Nx69hxv3"
++        set public-key "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCPFoQpWSQbdXz/icmL7ykRzjRojhK84SDcXDnijQhhhaGj697v8tu5/WJCgJ+EVj9cASFsNKRf9F5TVlCi9dA/vX9T8kNcEZdjoXyiazMutCU5TnCJeCnvxMVsYdwM5TpcKVvjnOJqNunthA989eZMhZjDpF0JNs1p+ECkTDW51o1DNDgY30xZ3oYivyJiP12MZB4w/XjoXH8s/m7YVGPARCj3++mB+YZdV1TidmUJXawS/rQ4glWo1iCW7oTH5smaL250iqDypl7r+dy3zwskFJXneb7f5arljBAoSvy0ZzqaAt1Aot4GuEiXRRpxOt3+y7j0FQrsyLZHeJ72QU5"
+         set source built-in
+     next
+ end
+... skipped 262 lines ...
+     next
+ end
+ config log memory setting
+-    set status disable
++    set status enable
+ end
+ config log disk setting
+     set status enable
+... skipped 25 lines ...
+     config redistribute "isis"
+     end
+ end
++config router static
++    edit 1
++        set dst 10.3.0.0 255.255.0.0
++        set device "Site-DC2"
++    next
++    edit 2
++        set dst 10.2.0.0 255.255.0.0
++        set device "Site-DC1"
++    next
++end
+ config router ospf
++    set router-id 10.34.0.1
++    config area
++        edit 0.0.0.0
++        next
++    end
++    config ospf-interface
++        edit "LAN4"
++            set interface "port2"
++            set authentication text
++            set authentication-key ENC kCzZhDXYdMupYdFQ9L00NB5kpFBKatvo1o+wbekWLO65KtxcDqrRysxGU5ifu82gUTU8/TVFMEXzriXb4SDst57d/FNEmKi1zMHskW55OoC4qq3Q5HAvFdR2osZs67kWtSOz+1GRbj4594FBCah9R0/UpCXve+pVShq96PuOpgZ4HsX4ZpV1Y6x2zvIrJFzA0Ve8Ww==
++            set cost 5
++            set dead-interval 40
++            set hello-interval 10
++        next
++        edit "WAN"
++            set interface "port1"
++            set authentication text
++            set authentication-key ENC K7Y1NwHyiyhJUZK/Stva5OOr8TxdvCToaZmanx6qKJEGrRFeOqzZLljoFwz1wIm02/eI5lGr3Y/QqO5RAzFihSwtN1U6+3Y968KbqtCy10Wa6xVDeG0PkU1KtYLrA5+65+NjSS91Hv5kAta5QcZvFi/TUNV/VwmcPGnBydci3X0O3krPEzLyftffW+fz9SDcnU5rHQ==
++            set cost 10
++            set dead-interval 40
++            set hello-interval 10
++        next
++        edit "WAN2"
++            set interface "port3"
++            set authentication text
++            set authentication-key ENC dQX1C5saOjFk3i/c5Az1v2095ZBLdXSnVtZwPh3qif7XKHdHdrJSkZls7tEmd3VtaNZ7AA/SqWhu+hV2jiNovC4FJdGZ8fgs/NiTV1vODW9bMdi8znnAJalSzm9wrV21pcXvNpQWuxm1MQ3CYOcJDNs9wYbVXibCNp3DqKXFyUt1L3J0x7+X6FsjK29/9cSFRsxWvg==
++            set cost 15
++            set dead-interval 40
++            set hello-interval 10
++        next
++    end
++    config network
++        edit 1
++            set prefix 10.34.0.0 255.255.0.0
++        next
++        edit 2
++            set prefix 192.168.122.0 255.255.255.0
++        next
++    end
+     config redistribute "connected"
++        set status enable
+     end
+     config redistribute "static"
++        set status enable
+     end
+     config redistribute "rip"
+     end
+     config redistribute "bgp"
++        set status enable
+     end
+     config redistribute "isis"
+     end
+... skipped 56 lines ...
+ end
+ config router multicast
+ end

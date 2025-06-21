@@ -2,10 +2,6 @@
 
 Featuring academic projects centered on networking, cybersecurity, and cloud technologies, offering practical solutions and insights for education.
 
-![Header](A_header_graphic_for_an_academic_project_archive_a.png)
-
----![ATU_Projects](https://github.com/user-attachments/assets/372c323c-ebde-449c-847d-2bc9235376fe)
-
 
 ## 📚 Contents
 

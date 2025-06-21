@@ -1,0 +1,56 @@
+config terminal
+vlan 10
+name Employee
+vlan 20
+name HR
+vlan 30
+name Finance
+vlan 40 
+name Management
+vlan 50
+name consultastion
+
+line con 0
+password excel
+logging synchronous
+login
+history size 10
+exec-timeout 6 50
+exit
+
+int range fa0/1-10
+switchport mode access
+switchport access vlan 10
+
+int range fa0/11-14
+switchport mode access
+switchport access vlan 40
+
+int vlan 10
+ip address 192.168.0.1 255.255.255.224
+int vlan 20
+ip address 192.168.0.33 255.255.255.240
+int vlan 30
+ip address 192.168.0.49 255.255.255.240
+int vlan 40
+ip address 192.168.0.65 255.255.255.240
+int vlan 50
+ip address 192.168.0.81 255.255.255.240
+
+int range fa0/11-14
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation shutdown 
+
+interface GigabitEthernet0/1
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,50,99
+switchport mode trunk
+
+interface GigabitEthernet0/2
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,50,99
+switchport mode trunk
+

@@ -1,0 +1,138 @@
+hostname ASA
+int gi1/1
+no ip address
+no nameif
+no security-level
+exit
+int gi1/2
+no nameif
+no security-level
+no ip address dhcp
+exit
+int gi1/3
+no nameif
+no security-level
+no ip address dhcp
+exit
+
+int gi1/1
+ip address 10.0.0.2 255.255.255.248
+nameif Inside
+security-level 100
+no shut
+exit
+int gi1/2
+ip address 20.0.0.2 255.255.255.248
+nameif Outside
+security-level 0
+no shut
+exit
+int gi1/3
+ip address 11.0.0.2 255.255.255.248
+nameif DMZ
+security-level 70
+no shut
+exit
+
+Router rip
+Network 10.0.0.0
+Network 11.0.0.0
+Network 20.0.0.0
+
+object network INSIDE-NET
+subnet 192.168.0.0 255.255.255.224
+subnet 192.168.0.32 255.255.255.240
+subnet 192.168.0.48 255.255.255.240
+subnet 192.168.0.64 255.255.255.240
+subnet 192.168.0.80 255.255.255.240
+subnet 10.0.0.0 255.255.255.248
+nat (inside,outside) dynamic interface
+exit
+
+conf t
+class-map inspection_default
+match default-inspection-traffic
+exit
+policy-map global_policy
+class inspection_default
+inspect icmp
+exit
+service-policy global_policy global
+
+policy-map global_policy
+class inspection_default
+inspect http
+exit
+
+policy-map global_policy
+class inspection_default
+inspect dns
+exit
+
+policy-map global_policy
+class inspection_default
+inspect ftp
+exit
+
+
+conf t
+object network INSIDE-DMZ
+subnet 192.168.0.0 255.255.255.224
+subnet 192.168.0.32 255.255.255.240
+subnet 192.168.0.48 255.255.255.240
+subnet 192.168.0.64 255.255.255.240
+subnet 192.168.0.80 255.255.255.240
+subnet 10.0.0.0 255.255.255.248
+nat (inside,dmz) dynamic interface
+exit
+
+conf t
+class-map inspection_inside_dmz
+match default-inspection-traffic
+exit
+policy-map inside_dmz_policy
+class inspection_inside_dmz
+inspect icmp
+exit
+
+conf t
+service-policy inside_dmz_policy interface inside
+
+policy-map inside_dmz_policy
+class inspection_inside_dmz
+inspect http
+exit
+
+policy-map inside_dmz_policy
+class inspection_inside_dmz
+inspect dns
+
+policy-map inside_dmz_policy
+class inspection_inside_dmz
+inspect ftp
+exit
+
+object network DMZ-OUTSIDE
+subnet 11.0.0.0 255.255.255.248
+subnet 192.168.80.0 255.255.255.0
+
+nat (dmz,outside) dynamic interface
+exit
+
+conf t
+class-map inspection_dmz_outside
+match default-inspection-traffic 
+exit
+policy-map dmz_outside_policy
+class inspection_dmz_outside
+inspect icmp
+exit
+
+service-policy dmz_outside_policy interface dmz
+
+policy-map dmz_outside_policy
+class inspection_dmz_outside
+inspect http
+inspect dns
+inspect ftp
+exit

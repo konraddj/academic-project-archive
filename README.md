@@ -17,17 +17,15 @@ This repository gathers selected academic and internship projects completed duri
 
 Each folder below contains detailed documentation and configurations related to a project.
 
-### 🔧 Projects
 
 | Project | Description |
 |--------|-------------|
-| [`VMware-vSAN-Cluster`](./VMware-vSAN-Cluster) | SOP for configuring a vSAN cluster with domain controller |
-| [`Hyper-V-Cluster`](./Hyper-V-Cluster) | Hyper-V cluster and domain controller on Windows Server |
-| [`Enterprise-Network-Design`](./Enterprise-Network-Design) | Full enterprise LAN/WAN design + FortiGate & GNS3 |
-| [`Secure-LAN-and-WAN`](./Secure-LAN-and-WAN) | Secure network for financial institution, with WAN |
-| [`DHCP-Log-Automation`](./DHCP-Log-Automation) | Python tool for parsing and reporting DHCP logs |
+| [`VMware-vSAN-Cluster-and-Domain-Controller-Configuration`](./VMware-vSAN-Cluster-and-Domain-Controller-Configuration) | SOP for deploying a VMware vSAN cluster with Domain Controller. Includes configuration and validation steps. |
+| [`Hyper-V-Cluster-and-Domain-Controller-Configuration`](./Hyper-V-Cluster-and-Domain-Controller-Configuration) | Hyper-V cluster with shared storage and Domain Controller on Windows Server 2016. Step-by-step setup and management. |
+| [`Enterprise-Network-Design`](./Enterprise-Network-Design) | Full enterprise LAN/WAN design including FortiGate config, GNS3 simulation, and cost estimation. |
+| [`Secure-LAN-with-WAN-Integration`](./Secure-LAN-with-WAN-Integration) | Secure network architecture for financial company’s office expansion, with WAN integration. |
+| [`DHCP-Log-Automation-and-Reporting-Tool`](./DHCP-Log-Automation-and-Reporting-Tool) | Python tool for parsing and reporting DHCP logs from Ubuntu-based production servers. |
 | [`PowerShell`](./PowerShell) | Scripts and walkthroughs in PowerShell |
-| [`Python`](./Python) | Python automation and learning examples |
 
 ---
 

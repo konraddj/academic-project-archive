@@ -41,7 +41,7 @@ Each folder below contains detailed documentation and configurations related to 
 
 **Konrad Jeziorski**  
 📍 Dublin, Ireland  
-📧 [konraddj.it@gmail.com]  
+📧 konraddj.it@gmail.com 
 🔗 [LinkedIn](www.linkedin.com/in/konrad-jeziorski-5a7b84190)
 
 ---

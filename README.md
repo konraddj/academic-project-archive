@@ -1,4 +1,4 @@
-# Academic Project Archive — Konrad Jeziorski
+# Academic Project Archive
 
 > _This repository serves as an academic archive and is read-only._
 

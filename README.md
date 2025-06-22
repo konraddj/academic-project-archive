@@ -29,11 +29,12 @@ Each folder below contains detailed documentation and configurations related to 
 
 ---
 
-## 🔒 Private Works
+## 🔒 Private Works  
+> _Access can be granted **upon request**.  
 
-- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** - Master’s thesis on enhancing cloud communication security using advanced cryptographic techniques, including TLS protocol analysis, cipher suite testing on AWS, and lifecycle management of Certificate Authorities (CAs). Held in a private repository, available upon request.
-- **Brute Force Attacks: Cryptanalysis and Prevention Techniques** – a final-year BSc research project focusing on password security mechanisms, brute-force attack strategies, and practical defense implementations. Available upon direct inquiry.
-- **Verification of Certificate Authorities (CAs) and integration with cloud providers for enhanced security** - accepted but unpublished. Research on integration and verification of third-party Certificate Authorities (CAs) with cloud providers to enhance security. Contact for details.
+- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** - Master’s thesis focused on securing cloud communication by implementing and analysing TLS protocols across AWS services such as ALB, CloudFront, and EC2. Conducted tests of multiple TLS versions and cipher suites. Managed certificate lifecycle using certificates issued by Amazon ACM and third-party authorities. Utilised Wireshark, OpenSSL, Nmap, AWS CloudWatch, and Athena to monitor traffic, assess encryption strength, and evaluate performance under various configurations.
+- **Brute Force Attacks: Cryptanalysis and Prevention Techniques** - BSc research project focusing on password security mechanisms, brute-force attack strategies, and practical defense implementations.
+- **Verification of Certificate Authorities (CAs) and integration with cloud providers for enhanced security** - accepted but unpublished. Research on integration and verification of third-party Certificate Authorities (CAs) with cloud providers to enhance security.
 
 ---
 

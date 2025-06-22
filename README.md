@@ -15,7 +15,7 @@ This repository gathers selected academic and internship projects completed duri
 - Networking (LAN/WAN, routing, segmentation)
 - Cybersecurity (FortiGate, secure topologies)
 - Cloud and Virtualisation (VMware, Hyper-V)
-- Scripting and Automation (PowerShell, Python)
+- Scripting and Automation (PowerShell, Bash, Python)
 
 Each folder below contains detailed documentation and configurations related to a project.
 
@@ -34,11 +34,11 @@ Each folder below contains detailed documentation and configurations related to 
 ## 🔒 Private Works  
 > _Access can be granted **upon request**._
 
-- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** – Master’s thesis focused on securing cloud communication by implementing and analysing TLS protocols across AWS services such as ALB, CloudFront, and EC2. Conducted tests of multiple TLS versions and cipher suites. Managed certificate lifecycle using certificates issued by Amazon ACM and third-party authorities (e.g. Let’s Encrypt via Certbot). Utilised Wireshark, OpenSSL, Nmap, AWS CloudWatch, and Athena to monitor traffic, assess encryption strength, and evaluate performance under various configurations.
+- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** - Master’s thesis focused on securing cloud communication by implementing and analysing TLS protocols across AWS services such as ALB, CloudFront, and EC2. Conducted tests of multiple TLS versions and cipher suites. Managed certificate lifecycle using certificates issued by Amazon ACM and third-party authorities (e.g. Let’s Encrypt via Certbot). Utilised Wireshark, OpenSSL, Nmap, AWS CloudWatch, and Athena to monitor traffic, assess encryption strength, and evaluate performance under various configurations.
 
-- **Brute Force Attacks: Cryptanalysis and Prevention Techniques** – BSc research project focusing on password security mechanisms, brute-force attack strategies, and practical defence implementations.
+- **Brute Force Attacks: Cryptanalysis and Prevention Techniques** - BSc research project focusing on password security mechanisms, brute-force attack strategies, and practical defence implementations.
 
-- **Verification of Certificate Authorities (CAs) and Integration with Cloud Providers for Enhanced Security** – Accepted but unpublished. Research on integration and verification of third-party Certificate Authorities (CAs) with cloud providers to enhance security.
+- **Verification of Certificate Authorities (CAs) and Integration with Cloud Providers for Enhanced Security** - IEEE paper, accepted but unpublished. Research on integration and verification of third-party Certificate Authorities (CAs) with cloud providers to enhance security.
 
 ---
 

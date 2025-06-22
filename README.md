@@ -34,7 +34,7 @@ Each folder below contains detailed documentation and configurations related to 
 ## 🔒 Private Works  
 > _Access can be granted **upon request**._
 
-- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** - Master’s thesis focused on securing cloud communication by implementing and analysing TLS protocols across AWS services such as ALB, CloudFront, and EC2. Conducted tests of multiple TLS versions and cipher suites. Managed certificate lifecycle using certificates issued by Amazon ACM and third-party authorities. Utilised Wireshark, OpenSSL, Nmap, AWS CloudWatch, and Athena to monitor traffic, assess encryption strength, and evaluate performance under various configurations.
+- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** - Master’s thesis focused on securing cloud communication by implementing and analysing TLS protocols across AWS services such as ALB, CloudFront, and EC2. Employed Python as a client to interact with services, manipulate cipher suites and TLS protocol versions during testing, and automate communication workflows. Managed certificate lifecycle using certificates issued by Amazon ACM and third-party authorities. Utilised Wireshark, OpenSSL, Nmap, AWS CloudWatch, and Athena to monitor traffic, assess encryption strength, and evaluate performance under various configurations.
 
 - **Brute Force Attacks: Cryptanalysis and Prevention Techniques** - BSc research project focusing on password security mechanisms, brute-force attack strategies, and practical defence implementations.
 

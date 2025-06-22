@@ -31,7 +31,7 @@ Each folder below contains detailed documentation and configurations related to 
 
 ## 🔒 Private Works
 
-- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** - Master’s thesis, held in a private repository, available upon request.
+- **Securing Communication in the Cloud Computing Using Cryptographic Techniques** - Master’s thesis on enhancing cloud communication security using advanced cryptographic techniques, including TLS protocol analysis, cipher suite testing on AWS, and lifecycle management of Certificate Authorities (CAs). Held in a private repository, available upon request.
 - **Brute Force Attacks: Cryptanalysis and Prevention Techniques** – a final-year BSc research project focusing on password security mechanisms, brute-force attack strategies, and practical defense implementations. Available upon direct inquiry.
 - **IEEE Research Draft: Verification of Certificate Authorities (CAs) and integration with cloud providers for enhanced security** - accepted but unpublished. Contact for details.
 

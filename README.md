@@ -10,7 +10,7 @@ This repository contains academic projects centred on networking, cybersecurity,
 
 ## 📚 Contents
 
-This repository gathers selected academic and internship projects completed during my studies at **Atlantic Technological University**. The projects showcase practical skills in:
+The projects cover areas including:
 
 - Networking (LAN/WAN, routing, segmentation)
 - Cybersecurity (FortiGate, secure topologies)

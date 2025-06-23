@@ -15,7 +15,7 @@ The projects cover areas including:
 - Networking (LAN/WAN, routing, segmentation)
 - Cybersecurity (FortiGate, secure topologies)
 - Cloud and Virtualisation (VMware, Hyper-V)
-- Scripting and Automation (PowerShell, Bash, Python)
+- Scripting and Automation (PowerShell, Batch, Python)
 
 Each folder below contains detailed documentation and configurations related to a project.
 
